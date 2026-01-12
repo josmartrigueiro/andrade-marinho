@@ -6,12 +6,10 @@
 
   --radius: 0.625rem;
 
-  /* Brand colors - Base palette */
   --primary: oklch(0.338 0.046 241.5);
   --primary-dark: oklch(0.241 0.036 241.5);
   --primary-light: oklch(0.702 0.016 241.5);
 
-  /* Gradients - Light theme */
   --gradient-start: oklch(0.702 0.016 241.5);
   --gradient-end: oklch(0.338 0.046 241.5);
   --gradient-dark-start: oklch(0.181 0.028 241.5);

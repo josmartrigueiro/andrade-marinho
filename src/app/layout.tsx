@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { CustomCursor } from "@/components/custom-cursor";
+import { SplashProvider } from "@/providers/splash-provider";
 
 const ppmoriSans = localFont({
   variable: "--font-ppmori-sans",
@@ -57,8 +58,18 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="scroll-smooth">
       <body className={`${ppmoriSans.variable} antialiased bg-background`}>
-        <CustomCursor />
-        {children}
+        <SplashProvider
+          showOnMount={true}
+          splashProps={{
+            backgroundColorLight: "bg-background",
+            backgroundColorDark: "bg-primary",
+            minDuration: 2000,
+            maxDuration: 3000,
+          }}
+        >
+          <CustomCursor />
+          {children}
+        </SplashProvider>
       </body>
     </html>
   );
