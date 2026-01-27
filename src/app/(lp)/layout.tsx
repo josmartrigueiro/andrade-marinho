@@ -11,7 +11,6 @@ export default function RootLayout({
       <main className="flex-1 flex-col flex min-h-[calc(100dvh-1dvh)]">
         {children}
       </main>
-      {/* <Footer /> */}
     </div>
   );
 }

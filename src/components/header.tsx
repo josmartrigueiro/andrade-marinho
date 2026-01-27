@@ -251,7 +251,7 @@ export function Header() {
 
         <nav className="hidden lg:flex items-center justify-between mx-6 py-3">
           <div className="text-white text-xs lg:text-sm tracking-wider [text-shadow:0_1px_2px_rgba(0,0,0,0.5)]">
-            <span>PRIVILEGI</span>
+            <span>PRIVILEGE</span>
           </div>
 
           <div className="flex items-center gap-6 lg:gap-8 text-white text-xs lg:text-sm tracking-wider [text-shadow:0_1px_2px_rgba(0,0,0,0.5)]">
