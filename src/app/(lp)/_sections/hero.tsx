@@ -21,7 +21,7 @@ export function Hero() {
         }}
       >
         <Image
-          src="/privilegi/praca-caramanchao.jpg"
+          src="/privilege/praca-caramanchao.jpg"
           alt="Praça do Caramanchão"
           fill
           priority
@@ -32,8 +32,8 @@ export function Hero() {
       </motion.div>
       <div className="absolute inset-0 bg-black/20" />
 
-      <h1 className="uppercase text-5xl text-white tracking-widest">
-        <span className="sr-only">Privilegi Ponta Negra</span>
+      <h1 className="uppercase text-2xl text-white tracking-widest px-4 text-center sm:text-3xl md:text-4xl lg:text-5xl">
+        <span className="sr-only">Privilege Ponta Negra</span>
         <TextEffect
           per="char"
           delay={3.7}
@@ -46,7 +46,7 @@ export function Hero() {
             ease: [0.23, 1, 0.32, 1],
           }}
         >
-          Privilegi Ponta Negra
+          Privilege Ponta Negra
         </TextEffect>
       </h1>
     </section>
