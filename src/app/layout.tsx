@@ -58,7 +58,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="scroll-smooth">
       <body className={`${ppmoriSans.variable} antialiased bg-background`}>
-        <SplashProvider
+        {/*<SplashProvider
           showOnMount={true}
           splashProps={{
             backgroundColorLight: "bg-background",
@@ -66,10 +66,10 @@ export default function RootLayout({
             minDuration: 2000,
             maxDuration: 3000,
           }}
-        >
-          <CustomCursor />
-          {children}
-        </SplashProvider>
+        >*/}
+        <CustomCursor />
+        {children}
+        {/*</SplashProvider>*/}
       </body>
     </html>
   );

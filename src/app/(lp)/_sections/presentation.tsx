@@ -66,7 +66,7 @@ export function Presentation() {
             variants={variants}
             transition={transition}
           >
-            <h3 className="text-base font-bold uppercase tracking-widest text-primary-light md:text-lg">
+            <h3 className="text-sm font-medium uppercase tracking-[0.2em] text-primary-light">
               INTRODUÇÃO
             </h3>
           </motion.div>
@@ -89,7 +89,7 @@ export function Presentation() {
             </motion.div>
 
             <motion.h2
-              className="mt-6 text-2xl font-bold text-white sm:text-3xl md:mt-8 md:text-4xl"
+              className="mt-6 text-white text-xl font-medium md:mt-8 md:text-3xl lg:text-4xl"
               variants={variants}
               transition={transition}
             >
