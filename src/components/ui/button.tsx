@@ -8,11 +8,11 @@ import type * as React from "react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "[&_svg]:-mx-0.5 relative inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-lg border font-medium text-base outline-none transition-shadow before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(--radius-lg)-1px)] pointer-coarse:after:absolute pointer-coarse:after:size-full pointer-coarse:after:min-h-11 pointer-coarse:after:min-w-11 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-64 sm:text-sm [&_svg:not([class*='opacity-'])]:opacity-80 [&_svg:not([class*='size-'])]:size-4.5 sm:[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+  "group/btn relative inline-flex justify-center items-center pt-[1.7rem] px-[2rem] pb-[1.5rem] uppercase text-sm overflow-hidden group isolate bg-transparent before:content-[''] before:absolute before:inset-0 before:block before:w-full before:h-full before:border before:border-primary-dark before:-z-10 before:[backface-visibility:hidden] before:pointer-events-none before:transition-all before:duration-[400ms] before:[transition-timing-function:cubic-bezier(.645,.045,.355,1)] before:delay-0 after:content-[''] after:absolute after:inset-0 after:block after:w-full after:h-full after:origin-bottom after:scale-y-0 after:-z-0 after:[backface-visibility:hidden] after:pointer-events-none after:transition-all after:duration-[400ms] after:[transition-timing-function:cubic-bezier(.645,.045,.355,1)] after:delay-0 hover:after:scale-y-100",
   {
     defaultVariants: {
       size: "default",
-      variant: "default",
+      variant: "primary",
     },
     variants: {
       size: {
@@ -23,27 +23,22 @@ const buttonVariants = cva(
         "icon-xl":
           "size-11 sm:size-10 [&_svg:not([class*='size-'])]:size-5 sm:[&_svg:not([class*='size-'])]:size-4.5",
         "icon-xs":
-          "size-7 rounded-md before:rounded-[calc(var(--radius-md)-1px)] sm:size-6 not-in-data-[slot=input-group]:[&_svg:not([class*='size-'])]:size-4 sm:not-in-data-[slot=input-group]:[&_svg:not([class*='size-'])]:size-3.5",
+          "size-7 sm:size-6 not-in-data-[slot=input-group]:[&_svg:not([class*='size-'])]:size-4 sm:not-in-data-[slot=input-group]:[&_svg:not([class*='size-'])]:size-3.5",
         lg: "h-10 px-[calc(--spacing(3.5)-1px)] sm:h-9",
         sm: "h-8 gap-1.5 px-[calc(--spacing(2.5)-1px)] sm:h-7",
         xl: "h-11 px-[calc(--spacing(4)-1px)] text-lg sm:h-10 sm:text-base [&_svg:not([class*='size-'])]:size-5 sm:[&_svg:not([class*='size-'])]:size-4.5",
-        xs: "h-7 gap-1 rounded-md px-[calc(--spacing(2)-1px)] text-sm before:rounded-[calc(var(--radius-md)-1px)] sm:h-6 sm:text-xs [&_svg:not([class*='size-'])]:size-4 sm:[&_svg:not([class*='size-'])]:size-3.5",
+        xs: "h-7 gap-1 px-[calc(--spacing(2)-1px)] text-sm sm:h-6 sm:text-xs [&_svg:not([class*='size-'])]:size-4 sm:[&_svg:not([class*='size-'])]:size-3.5",
+        "view-all": "px-12 py-5 text-sm uppercase tracking-widest",
       },
       variant: {
-        default:
-          "not-disabled:inset-shadow-[0_1px_--theme(--color-white/16%)] border-primary bg-primary text-primary-foreground shadow-primary/24 shadow-xs [:active,[data-pressed]]:inset-shadow-[0_1px_--theme(--color-black/8%)] [:disabled,:active,[data-pressed]]:shadow-none [:hover,[data-pressed]]:bg-primary/90",
-        destructive:
-          "not-disabled:inset-shadow-[0_1px_--theme(--color-white/16%)] border-destructive bg-destructive text-white shadow-destructive/24 shadow-xs [:active,[data-pressed]]:inset-shadow-[0_1px_--theme(--color-black/8%)] [:disabled,:active,[data-pressed]]:shadow-none [:hover,[data-pressed]]:bg-destructive/90",
-        "destructive-outline":
-          "border-input bg-transparent not-dark:bg-clip-padding text-destructive-foreground shadow-xs/5 not-disabled:not-active:not-data-pressed:before:shadow-[0_1px_--theme(--color-black/6%)] dark:bg-input/32 dark:not-disabled:before:shadow-[0_-1px_--theme(--color-white/2%)] dark:not-disabled:not-active:not-data-pressed:before:shadow-[0_-1px_--theme(--color-white/6%)] [:disabled,:active,[data-pressed]]:shadow-none [:hover,[data-pressed]]:border-destructive/32 [:hover,[data-pressed]]:bg-destructive/4",
-        ghost:
-          "border-transparent data-pressed:bg-accent [:hover,[data-pressed]]:bg-accent",
-        link: "border-transparent underline-offset-4 [:hover,[data-pressed]]:underline",
-        outline:
-          "border-input bg-background not-dark:bg-clip-padding shadow-xs/5 not-disabled:not-active:not-data-pressed:before:shadow-[0_1px_--theme(--color-black/6%)] dark:bg-input/32 dark:not-disabled:before:shadow-[0_-1px_--theme(--color-white/2%)] dark:not-disabled:not-active:not-data-pressed:before:shadow-[0_-1px_--theme(--color-white/6%)] [:disabled,:active,[data-pressed]]:shadow-none [:hover,[data-pressed]]:bg-accent/50 dark:[:hover,[data-pressed]]:bg-input/64",
+        primary:
+          "border-primary text-primary-dark shadow-primary/24 shadow-xs after:bg-primary",
         secondary:
-          "border-transparent bg-secondary text-secondary-foreground [:active,[data-pressed]]:bg-secondary/80 [:hover,[data-pressed]]:bg-secondary/90",
+          "border-white text-white shadow-none before:border-white after:bg-primary-dark",
+        tertiary:
+          "border-primary-light text-primary-light-foreground shadow-xs after:bg-primary-light",
       },
+      rounded: {},
     },
   },
 );
@@ -63,9 +58,18 @@ function Button({ className, variant, size, render, ...props }: ButtonProps) {
     type: typeValue,
   };
 
+  const mergedProps = mergeProps<"button">(defaultProps, props);
+
   return useRender({
     defaultTagName: "button",
-    props: mergeProps<"button">(defaultProps, props),
+    props: {
+      ...mergedProps,
+      children: (
+        <span className="flex items-center justify-center gap-2.5 relative z-1 transition-colors duration-300 group-hover:text-white">
+          {mergedProps.children}
+        </span>
+      ),
+    },
     render,
   });
 }
