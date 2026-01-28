@@ -35,7 +35,7 @@ export function CustomCursor() {
     window.addEventListener("mousemove", handleMouseMove);
 
     const interactiveElements = document.querySelectorAll(
-      "a, button, img, input, textarea, select"
+      "a, img, input, textarea, select",
     );
     interactiveElements.forEach((element) => {
       element.addEventListener("mouseenter", handleMouseEnter);
@@ -52,23 +52,23 @@ export function CustomCursor() {
       dotPosition.current.x = lerp(
         dotPosition.current.x,
         mousePosition.current.x,
-        DOT_SMOOTHNESS
+        DOT_SMOOTHNESS,
       );
       dotPosition.current.y = lerp(
         dotPosition.current.y,
         mousePosition.current.y,
-        DOT_SMOOTHNESS
+        DOT_SMOOTHNESS,
       );
 
       borderDotPosition.current.x = lerp(
         borderDotPosition.current.x,
         mousePosition.current.x,
-        BORDER_DOT_SMOOTHNESS
+        BORDER_DOT_SMOOTHNESS,
       );
       borderDotPosition.current.y = lerp(
         borderDotPosition.current.y,
         mousePosition.current.y,
-        BORDER_DOT_SMOOTHNESS
+        BORDER_DOT_SMOOTHNESS,
       );
 
       setRenderPos({
