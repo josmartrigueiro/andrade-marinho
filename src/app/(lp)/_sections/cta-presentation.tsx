@@ -35,16 +35,16 @@ export function CtaPresentation() {
   return (
     <section
       id="cta-presentation"
-      className="container py-16 md:py-20 lg:py-24"
+      className="container py-0! md:py-16! lg:py-20"
     >
       <motion.div
-        className="flex flex-col items-center justify-between gap-6 md:flex-row md:gap-8"
+        className="flex flex-col md:items-center justify-between gap-6 md:flex-row md:gap-8"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
       >
-        <div className="flex items-center gap-10 md:gap-12">
+        <div className="md:flex-row flex-col flex md:items-center gap-6 md:gap-12">
           <motion.div
             variants={itemVariants}
             className="flex size-13 shrink-0 items-center justify-center rounded-full border border-gray-300 bg-white"

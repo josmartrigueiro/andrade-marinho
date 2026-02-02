@@ -80,20 +80,20 @@ export function Stats() {
     <section id="stats" className="py-16 md:py-20 lg:py-24">
       <div className="container px-4 md:px-6 lg:px-8">
         <motion.div
-          className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-20"
+          className="grid grid-cols-1 gap-6 md:gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-20"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
         >
           <motion.div className="lg:pt-2" variants={itemVariants}>
-            <span className="text-sm font-medium uppercase tracking-[0.2em] text-primary-dark">
+            <span className="text-sm font-medium uppercase tracking-[0.2em] text-gray-600">
               ANDRADE MARINHO EM DETALHES
             </span>
           </motion.div>
 
           <motion.div variants={itemVariants}>
-            <h2 className="mb-10 text-2xl font-medium uppercase text-gray-900 md:text-4xl lg:text-5xl">
+            <h2 className="mb-4 md:mb-10 text-2xl font-medium uppercase text-gray-900 md:text-4xl lg:text-5xl">
               NOSSA JORNADA
               <br />
               EM NÚMEROS

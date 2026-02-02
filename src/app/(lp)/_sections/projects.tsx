@@ -153,7 +153,7 @@ function ImageSlideshow({
 
 export function Projects() {
   return (
-    <section id="projects" className="py-12 md:py-16 lg:py-20 bg-gray-50">
+    <section id="projects" className="py-12 md:py-16 lg:py-20">
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-[calc(33.3333%-10px)_calc(66.6666%-10px)] gap-5">
           <motion.div
@@ -190,7 +190,7 @@ export function Projects() {
             </motion.h2>
 
             <motion.p
-              className="text-sm text-gray-600 leading-relaxed mt-6 mb-6 max-w-sm"
+              className="text-base text-gray-600 leading-relaxed mt-6 mb-6 max-w-md"
               variants={itemVariants}
             >
               Elaborando sua visão única. Os serviços de Arquitetura, Interiores
