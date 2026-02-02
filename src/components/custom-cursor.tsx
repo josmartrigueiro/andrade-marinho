@@ -101,7 +101,7 @@ export function CustomCursor() {
   if (!mounted) return null;
 
   return (
-    <div className="pointer-events-none">
+    <div className="lg:block hidden pointer-events-none">
       <div className="fixed inset-0 z-50">
         <div
           className="absolute rounded-full border border-white/50"
