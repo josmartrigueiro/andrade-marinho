@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "@phosphor-icons/react";
 import { AnimatePresence, motion, type Variants } from "motion/react";
 import Image from "next/image";
 import { useState, useEffect } from "react";

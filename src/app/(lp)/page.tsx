@@ -1,6 +1,13 @@
-import { Gallery } from "./_sections/gallery";
+import { ArtBoardGrid } from "@/components/art-board-grid";
+import { About } from "./_sections/about";
+import { CtaPresentation } from "./_sections/cta-presentation";
 import { Hero } from "./_sections/hero";
 import { Presentation } from "./_sections/presentation";
+import { Projects } from "./_sections/projects";
+import { ScrollText } from "./_sections/scroll-text";
+import { Services } from "./_sections/services";
+import { Stats } from "./_sections/stats";
+import { Contact } from "./_sections/contact";
 
 export default function Home() {
   return (
@@ -20,7 +27,49 @@ export default function Home() {
       {/* ===============================
        * GALLERY
        * =============================== */}
-      <Gallery />
+      <div className="-translate-y-50">
+        {/* ===============================
+         * ART BOARD GRID
+         * =============================== */}
+        <div className="relative container py-0! md:py-24! px-4 lg:px-12">
+          <ArtBoardGrid />
+        </div>
+
+        {/* ===============================
+         * SERVICES
+         * =============================== */}
+        <Services />
+
+        {/* ===============================
+         * CTA PRESENTATION
+         * =============================== */}
+        <CtaPresentation />
+
+        {/* ===============================
+         * STATS
+         * =============================== */}
+        <Stats />
+
+        {/* ===============================
+         * ABOUT
+         * =============================== */}
+        <About />
+
+        {/* ===============================
+         * PROJECTS
+         * =============================== */}
+        <Projects />
+      </div>
+
+      {/* ===============================
+       * SCROLL TEXT
+       * =============================== */}
+      <ScrollText />
+
+      {/* ===============================
+       * CONTACT
+       * =============================== */}
+      <Contact />
     </div>
   );
 }

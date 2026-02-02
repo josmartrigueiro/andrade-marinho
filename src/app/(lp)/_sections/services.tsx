@@ -1,18 +1,18 @@
 "use client";
 
 import { Separator } from "@/components/ui/separator";
-import { Building2, Award } from "lucide-react";
+import { Buildings, SealCheck } from "@phosphor-icons/react";
 import { motion, type Variants } from "motion/react";
 
 const services = [
   {
-    icon: Building2,
+    icon: Buildings,
     title: "Empreendimentos Residenciais",
     description:
       "Transformamos sonhos em lares com soluções inovadoras que elevam a qualidade de vida. Desde residenciais a empreendimentos comerciais, nossa equipe combina experiência, estratégia e conhecimento técnico para criar espaços que valorizam cidades e incentivam seu desenvolvimento com sustentabilidade e tecnologia.",
   },
   {
-    icon: Award,
+    icon: SealCheck,
     title: "Qualidade Certificada",
     description:
       "Somos certificados pelo PBQP-H Nível A e ISO 9001, garantindo excelência em cada projeto. Nosso compromisso vai além da construção: cultivamos relações duradouras baseadas no respeito e atenção a cada pessoa que confia em nosso trabalho, fortalecendo e enriquecendo histórias.",
@@ -48,7 +48,10 @@ const itemVariants: Variants = {
 
 export function Services() {
   return (
-    <section id="services" className="py-16 md:py-20 lg:py-24">
+    <section
+      id="services"
+      className="relative container px-4 pb-16 lg:px-12 py-0"
+    >
       <motion.div
         className="flex flex-col gap-10 lg:flex-row lg:gap-16"
         variants={containerVariants}
