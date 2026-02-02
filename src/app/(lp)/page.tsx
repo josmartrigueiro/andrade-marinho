@@ -4,8 +4,10 @@ import { CtaPresentation } from "./_sections/cta-presentation";
 import { Hero } from "./_sections/hero";
 import { Presentation } from "./_sections/presentation";
 import { Projects } from "./_sections/projects";
+import { ScrollText } from "./_sections/scroll-text";
 import { Services } from "./_sections/services";
 import { Stats } from "./_sections/stats";
+import { Contact } from "./_sections/contact";
 
 export default function Home() {
   return (
@@ -29,7 +31,7 @@ export default function Home() {
         {/* ===============================
          * ART BOARD GRID
          * =============================== */}
-        <div className="relative container px-4 lg:px-12">
+        <div className="relative container py-0! md:py-24! px-4 lg:px-12">
           <ArtBoardGrid />
         </div>
 
@@ -58,6 +60,16 @@ export default function Home() {
          * =============================== */}
         <Projects />
       </div>
+
+      {/* ===============================
+       * SCROLL TEXT
+       * =============================== */}
+      <ScrollText />
+
+      {/* ===============================
+       * CONTACT
+       * =============================== */}
+      <Contact />
     </div>
   );
 }
