@@ -35,7 +35,7 @@ export function CtaPresentation() {
   return (
     <section
       id="cta-presentation"
-      className="container py-0! md:py-16! lg:py-20"
+      className="container py-0! md:pb-16! lg:pb-20"
     >
       <motion.div
         className="flex flex-col md:items-center justify-between gap-6 md:flex-row md:gap-8"

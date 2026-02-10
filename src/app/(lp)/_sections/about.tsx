@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { TextEffect } from "@/components/ui/text-effect";
 import { motion, useScroll, useTransform, type Variants } from "motion/react";
 import { useRef } from "react";
 import Image from "next/image";
@@ -92,13 +93,58 @@ export function About() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
         >
-          <motion.h2
-            className="text-2xl md:text-4xl lg:text-5xl font-medium text-primary-foreground uppercase tracking-tight mb-8"
-            variants={itemVariants}
-          >
-            Conheça a<br />
-            Andrade Marinho
-          </motion.h2>
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-medium text-primary-foreground uppercase tracking-tight mb-8">
+            <TextEffect
+              per="char"
+              as="span"
+              useViewport
+              viewport={{ once: true, amount: 1 }}
+              delay={0.1}
+              speedReveal={1.2}
+              className="block"
+              variants={{
+                container: {
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: { staggerChildren: 0.04, delayChildren: 0.1 },
+                  },
+                },
+                item: {
+                  hidden: { opacity: 0, x: -20, filter: "blur(8px)" },
+                  visible: { opacity: 1, x: 0, filter: "blur(0px)" },
+                },
+              }}
+              segmentTransition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+            >
+              Conheça a
+            </TextEffect>
+            <TextEffect
+              per="char"
+              as="span"
+              useViewport
+              viewport={{ once: true, amount: 1 }}
+              delay={0.35}
+              speedReveal={1.2}
+              className="block"
+              variants={{
+                container: {
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: { staggerChildren: 0.04, delayChildren: 0.35 },
+                  },
+                },
+                item: {
+                  hidden: { opacity: 0, x: -20, filter: "blur(8px)" },
+                  visible: { opacity: 1, x: 0, filter: "blur(0px)" },
+                },
+              }}
+              segmentTransition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+            >
+              Andrade Marinho
+            </TextEffect>
+          </h2>
 
           <motion.p
             className="text-sm md:text-base text-primary-foreground/80 tracking-wider leading-relaxed mb-12 max-w-md"
@@ -110,8 +156,8 @@ export function About() {
 
           <motion.div variants={itemVariants}>
             <Button
-              variant="secondary"
-              className="w-fit"
+              variant="outline-white"
+              className="w-56"
               render={(buttonProps) => (
                 <a
                   {...(buttonProps as React.ComponentProps<"a">)}

@@ -1,6 +1,7 @@
 "use client";
 
 import { Separator } from "@/components/ui/separator";
+import { TextEffect } from "@/components/ui/text-effect";
 import { motion, type Variants } from "motion/react";
 import { CountingNumber } from "@/components/ui/counting-number";
 
@@ -94,9 +95,65 @@ export function Stats() {
 
           <motion.div variants={itemVariants}>
             <h2 className="mb-4 md:mb-10 text-2xl font-medium uppercase text-gray-900 md:text-4xl lg:text-5xl">
-              NOSSA JORNADA
-              <br />
-              EM NÚMEROS
+              <TextEffect
+                per="char"
+                as="span"
+                useViewport
+                viewport={{ once: true, amount: 1 }}
+                delay={0.1}
+                speedReveal={1.2}
+                className="block"
+                variants={{
+                  container: {
+                    hidden: { opacity: 0 },
+                    visible: {
+                      opacity: 1,
+                      transition: { staggerChildren: 0.04, delayChildren: 0.1 },
+                    },
+                  },
+                  item: {
+                    hidden: { opacity: 0, x: -20, filter: "blur(8px)" },
+                    visible: { opacity: 1, x: 0, filter: "blur(0px)" },
+                  },
+                }}
+                segmentTransition={{
+                  duration: 0.6,
+                  ease: [0.25, 0.1, 0.25, 1],
+                }}
+              >
+                NOSSA JORNADA
+              </TextEffect>
+              <TextEffect
+                per="char"
+                as="span"
+                useViewport
+                viewport={{ once: true, amount: 1 }}
+                delay={0.35}
+                speedReveal={1.2}
+                className="block"
+                variants={{
+                  container: {
+                    hidden: { opacity: 0 },
+                    visible: {
+                      opacity: 1,
+                      transition: {
+                        staggerChildren: 0.04,
+                        delayChildren: 0.35,
+                      },
+                    },
+                  },
+                  item: {
+                    hidden: { opacity: 0, x: -20, filter: "blur(8px)" },
+                    visible: { opacity: 1, x: 0, filter: "blur(0px)" },
+                  },
+                }}
+                segmentTransition={{
+                  duration: 0.6,
+                  ease: [0.25, 0.1, 0.25, 1],
+                }}
+              >
+                EM NÚMEROS
+              </TextEffect>
             </h2>
 
             <div className="space-y-0">

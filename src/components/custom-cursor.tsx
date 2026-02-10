@@ -35,7 +35,7 @@ export function CustomCursor() {
     window.addEventListener("mousemove", handleMouseMove);
 
     const interactiveElements = document.querySelectorAll(
-      "a, img, input, textarea, select",
+      "a, button, img, input, textarea, select",
     );
     interactiveElements.forEach((element) => {
       element.addEventListener("mouseenter", handleMouseEnter);
@@ -111,20 +111,20 @@ export function CustomCursor() {
             transform: "translate(-50%, -50%)",
             left: `${renderPos.border.x}px`,
             top: `${renderPos.border.y}px`,
-            transition: "width 0.3s, height 0.3s",
-            backdropFilter: "blur(4px)",
+            transition: "width 0.3s, height 0.3s, backdrop-filter 0.3s",
+            backdropFilter: isHovering ? "none" : "blur(4px)",
           }}
         />
       </div>
       <div
-        className="absolute rounded-full border border-white/90 z-99999"
+        className="absolute rounded-full border border-white/90 z-100"
         style={{
           width: "0.875rem",
           height: "0.875rem",
           transform: "translate(-50%, -50%)",
           left: `${renderPos.dot.x}px`,
           top: `${renderPos.dot.y}px`,
-          backdropFilter: isHovering ? "blur(8px)" : "blur(0px)",
+          backdropFilter: "none",
           backgroundColor: isHovering ? "rgba(255, 255, 255, 0.6)" : "white",
         }}
       />

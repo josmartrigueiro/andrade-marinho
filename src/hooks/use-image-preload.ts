@@ -2,10 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-/**
- * Hook para preload de imagens
- * Garante que todas as imagens sejam carregadas antes de exibir o conteúdo
- */
 export function useImagePreload(imageUrls: string[]) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [loadedCount, setLoadedCount] = useState(0);
@@ -33,13 +29,13 @@ export function useImagePreload(imageUrls: string[]) {
       images.push(img);
 
       img.onload = checkAllLoaded;
-      img.onerror = checkAllLoaded; // Continua mesmo se uma imagem falhar
+      img.onerror = checkAllLoaded;
       img.src = url;
     });
 
     return () => {
       cancelled = true;
-      // Cleanup: remove event listeners
+
       images.forEach((img) => {
         img.onload = null;
         img.onerror = null;
