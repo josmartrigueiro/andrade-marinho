@@ -8,6 +8,7 @@ import {
   SlidersHorizontal,
 } from "@phosphor-icons/react";
 import { motion, type Variants } from "motion/react";
+import { TextEffect } from "@/components/ui/text-effect";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -153,7 +154,7 @@ function ImageSlideshow({
 
 export function Projects() {
   return (
-    <section id="projects" className="py-12 md:py-16 lg:py-20">
+    <section id="projects" className="pt-12 md:pt-16 lg:pt-20">
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-[calc(33.3333%-10px)_calc(66.6666%-10px)] gap-5">
           <motion.div
@@ -180,14 +181,67 @@ export function Projects() {
               Projetos
             </motion.span>
 
-            <motion.h2
-              className="text-2xl font-medium uppercase text-gray-900 md:text-4xl lg:text-5xl"
-              variants={itemVariants}
-            >
-              Espaços
-              <br />
-              Redefinidos
-            </motion.h2>
+            <h2 className="text-2xl font-medium uppercase text-gray-900 md:text-4xl lg:text-5xl">
+              <TextEffect
+                per="char"
+                as="span"
+                useViewport
+                viewport={{ once: true, amount: 1 }}
+                delay={0.1}
+                speedReveal={1.2}
+                className="block"
+                variants={{
+                  container: {
+                    hidden: { opacity: 0 },
+                    visible: {
+                      opacity: 1,
+                      transition: { staggerChildren: 0.04, delayChildren: 0.1 },
+                    },
+                  },
+                  item: {
+                    hidden: { opacity: 0, x: -20, filter: "blur(8px)" },
+                    visible: { opacity: 1, x: 0, filter: "blur(0px)" },
+                  },
+                }}
+                segmentTransition={{
+                  duration: 0.6,
+                  ease: [0.25, 0.1, 0.25, 1],
+                }}
+              >
+                Espaços
+              </TextEffect>
+              <TextEffect
+                per="char"
+                as="span"
+                useViewport
+                viewport={{ once: true, amount: 1 }}
+                delay={0.35}
+                speedReveal={1.2}
+                className="block"
+                variants={{
+                  container: {
+                    hidden: { opacity: 0 },
+                    visible: {
+                      opacity: 1,
+                      transition: {
+                        staggerChildren: 0.04,
+                        delayChildren: 0.35,
+                      },
+                    },
+                  },
+                  item: {
+                    hidden: { opacity: 0, x: -20, filter: "blur(8px)" },
+                    visible: { opacity: 1, x: 0, filter: "blur(0px)" },
+                  },
+                }}
+                segmentTransition={{
+                  duration: 0.6,
+                  ease: [0.25, 0.1, 0.25, 1],
+                }}
+              >
+                Redefinidos
+              </TextEffect>
+            </h2>
 
             <motion.p
               className="text-base text-gray-600 leading-relaxed mt-6 mb-6 max-w-md"

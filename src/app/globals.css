@@ -76,6 +76,10 @@
   --sidebar-ring: oklch(0.708 0 0);
 
   --destructive-foreground: var(--color-red-700);
+
+  /* Hero editorial / arquitetônico */
+  --hero-bg: oklch(0.97 0.01 85);
+  --hero-accent: oklch(0.22 0.02 260);
 }
 
 @theme inline {
@@ -121,6 +125,8 @@
   --radius-4xl: calc(var(--radius) + 16px);
   --color-primary-dark: var(--primary-dark);
   --color-primary-light: var(--primary-light);
+  --color-hero-bg: var(--hero-bg);
+  --color-hero-accent: var(--hero-accent);
   --color-gradient-start: var(--gradient-start);
   --color-gradient-end: var(--gradient-end);
   --color-gradient-dark-start: var(--gradient-dark-start);
@@ -202,6 +208,13 @@ body {
   --sidebar-ring: oklch(0.556 0 0);
 
   --destructive-foreground: var(--color-red-400);
+}
+
+/* Hero — shape de construção (bloco retangular, cantos retos) no desktop */
+@media (min-width: 1024px) {
+  .hero-build-shape {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
 }
 
 @layer base {

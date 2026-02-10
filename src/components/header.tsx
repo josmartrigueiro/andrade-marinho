@@ -4,6 +4,8 @@ import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { TextRoll } from "./ui/text-roll";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 const ANIMATION_CONFIG = {
   column: {
@@ -31,6 +33,7 @@ export function Header() {
   const [scrollState, setScrollState] = useState<
     "top" | "scrolling-down" | "scrolling-up"
   >("top");
+  const [hasEnterpriseSections, setHasEnterpriseSections] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const lastScrollY = useRef(0);
@@ -56,6 +59,21 @@ export function Header() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const enterpriseSectionIds = [
+      "ficha-tecnica",
+      "galeria",
+      "plantas",
+      "projeto",
+    ];
+
+    const hasAnyEnterpriseSection = enterpriseSectionIds.some(
+      (id) => typeof document !== "undefined" && document.getElementById(id),
+    );
+
+    setHasEnterpriseSections(hasAnyEnterpriseSection);
   }, []);
 
   useEffect(() => {
@@ -132,92 +150,146 @@ export function Header() {
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const isTop = scrollState === "top";
-  const showMainNav = isTop || scrollState === "scrolling-up";
-  const showBgPrimary = !isTop;
+  const isScrollingDown = scrollState === "scrolling-down";
+  const isScrollingUp = scrollState === "scrolling-up";
 
-  const useDark = !isTop || isMenuOpen;
-  const textColor = useDark ? "text-foreground" : "text-white";
-  const barColor = useDark ? "bg-foreground" : "bg-white";
-  const borderColor = useDark ? "border-border" : "border-white/30";
-  const logoSrc = useDark ? "/logo-blue.png" : "/logo-white.png";
+  const showBgPrimary = !isTop;
+  const showFullNav = isTop || isScrollingUp;
+  const showSimpleLogo = isScrollingDown;
+
+  const textColor = "text-foreground";
+  const barColor = "bg-foreground";
+  const borderColor = isTop ? "border-transparent" : "border-border";
+  const logoSrc = "/logo-blue.png";
 
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 w-full" role="banner">
         <div
           className={`absolute inset-0 bg-background transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-            showBgPrimary ? "translate-y-0 shadow-sm" : "-translate-y-full"
+            showBgPrimary ? "translate-y-0" : "-translate-y-full"
           }`}
           aria-hidden="true"
         />
 
-        <div
-          className={`relative overflow-hidden transition-[max-height,opacity] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-            showMainNav ? "max-h-24 opacity-100" : "max-h-0 opacity-0"
-          }`}
-        >
-          <div className={isTop ? "backdrop-blur-xs" : ""}>
-            <nav
-              className={`relative flex items-center justify-between mx-6 py-4 border-b ${borderColor} h-20 transition-colors duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]`}
-              aria-label="Navegacao principal"
-            >
-              {/* Desktop left links */}
-              <div
-                className={`hidden lg:flex items-center gap-4 lg:gap-8 ${textColor} text-xs lg:text-[13px] tracking-widest transition-colors duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]`}
+        <div className="relative overflow-hidden">
+          <div
+            className={cn(isTop ? "backdrop-blur-xs" : "", {
+              "border-b": !isTop,
+            })}
+          >
+            <div className="container py-0!">
+              <nav
+                className={`relative flex items-center justify-between py-4 h-20 transition-colors duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]`}
+                aria-label="Navegacao principal"
               >
-                <a href="#encontre-seu" className={NAV_LINK_CLASS}>
-                  ENCONTRE O SEU
-                </a>
-                <a href="#clientes" className={NAV_LINK_CLASS}>
-                  CLIENTES
-                </a>
-                <a href="#corretores" className={NAV_LINK_CLASS}>
-                  CORRETORES
-                </a>
-              </div>
+                <div
+                  className={`hidden lg:flex items-center gap-4 lg:gap-8 ${textColor} text-xs lg:text-[13px] tracking-widest transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    showFullNav
+                      ? "opacity-100 pointer-events-auto"
+                      : "opacity-0 pointer-events-none"
+                  }`}
+                >
+                  <Link href="#encontre-seu" className={NAV_LINK_CLASS}>
+                    EMPREENDIMENTOS
+                  </Link>
+                  <Link href="/portal-do-corretor" className={NAV_LINK_CLASS}>
+                    PORTAL DO CORRETOR
+                  </Link>
+                </div>
 
-              {/* Mobile logo */}
-              <a
-                href="#home"
-                className="lg:hidden"
-                aria-label="Andrade Marinho Empreendimentos - Inicio"
-              >
-                <Image
-                  src={logoSrc}
-                  alt="Andrade Marinho Empreendimentos"
-                  width={140}
-                  height={50}
-                  className="h-8 w-auto"
-                  priority
-                />
-              </a>
-
-              <a
-                href="#home"
-                className="hidden lg:block absolute left-1/2 -translate-x-1/2"
-                aria-label="Andrade Marinho Empreendimentos - Inicio"
-              >
-                <Image
-                  src={logoSrc}
-                  alt="Andrade Marinho Empreendimentos"
-                  width={140}
-                  height={50}
-                  className="h-8 lg:h-12 w-auto"
-                  priority
-                />
-              </a>
-
-              <div
-                className={`hidden lg:flex items-center gap-4 tracking-widest lg:gap-6 ${textColor} text-xs lg:text-sm transition-colors duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]`}
-              >
-                <a href="#contato" className={NAV_LINK_CLASS}>
-                  CONTATO
+                <a
+                  href="#home"
+                  className="lg:hidden"
+                  aria-label="Andrade Marinho Empreendimentos - Inicio"
+                >
+                  <Image
+                    src={logoSrc}
+                    alt="Andrade Marinho Empreendimentos"
+                    width={140}
+                    height={50}
+                    className="h-8 w-auto"
+                    priority
+                  />
                 </a>
+
+                <a
+                  href="#home"
+                  className="hidden lg:block absolute left-1/2 -translate-x-1/2"
+                  aria-label="Andrade Marinho Empreendimentos - Inicio"
+                >
+                  <Image
+                    src={logoSrc}
+                    alt="Andrade Marinho Empreendimentos"
+                    width={140}
+                    height={50}
+                    className={`w-auto transition-all duration-500 ${
+                      showSimpleLogo ? "h-8 lg:h-10" : "h-8 lg:h-12"
+                    }`}
+                    priority
+                  />
+                </a>
+
+                <div
+                  className={`hidden lg:flex items-center gap-4 tracking-widest lg:gap-6 ${textColor} text-xs lg:text-sm transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    showFullNav
+                      ? "opacity-100 pointer-events-auto"
+                      : "opacity-0 pointer-events-none"
+                  }`}
+                >
+                  <a href="#contato" className={NAV_LINK_CLASS}>
+                    CONTATO
+                  </a>
+                  <button
+                    type="button"
+                    ref={buttonRef}
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    className="flex flex-col justify-center items-center w-5 h-5 transition-opacity duration-200 group"
+                    aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
+                    aria-expanded={isMenuOpen}
+                    aria-controls="menu-overlay"
+                  >
+                    <span
+                      className={`absolute w-5 h-0.5 ${barColor} rounded-md transition-all duration-500 ${
+                        isMenuOpen
+                          ? "rotate-45 translate-y-0"
+                          : "-translate-y-1.5 group-hover:translate-x-1.5"
+                      }`}
+                      style={{
+                        transitionTimingFunction:
+                          "cubic-bezier(0.165, 0.84, 0.44, 1)",
+                      }}
+                    />
+                    <span
+                      className={`absolute w-5 h-[1.5px] ${barColor} rounded-md transition-all duration-500 ${
+                        isMenuOpen
+                          ? "opacity-0 scale-0"
+                          : "opacity-100 scale-100 translate-x-0.5"
+                      }`}
+                      style={{
+                        transitionTimingFunction:
+                          "cubic-bezier(0.165, 0.84, 0.44, 1)",
+                      }}
+                    />
+                    <span
+                      className={`absolute w-5 h-0.5 ${barColor} rounded-md transition-all duration-500 ${
+                        isMenuOpen
+                          ? "-rotate-45 translate-y-0"
+                          : "translate-y-1.5 group-hover:translate-x-1.5"
+                      }`}
+                      style={{
+                        transitionTimingFunction:
+                          "cubic-bezier(0.165, 0.84, 0.44, 1)",
+                      }}
+                    />
+                  </button>
+                </div>
+
+                {/* Mobile hamburger */}
                 <button
                   type="button"
-                  ref={buttonRef}
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
-                  className="flex flex-col justify-center items-center w-5 h-5 transition-opacity duration-200 group"
+                  className="lg:hidden flex flex-col justify-center items-center w-5 h-5 transition-opacity duration-200 group relative"
                   aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
                   aria-expanded={isMenuOpen}
                   aria-controls="menu-overlay"
@@ -256,83 +328,43 @@ export function Header() {
                     }}
                   />
                 </button>
-              </div>
-
-              {/* Mobile hamburger */}
-              <button
-                type="button"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="lg:hidden flex flex-col justify-center items-center w-5 h-5 transition-opacity duration-200 group relative"
-                aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
-                aria-expanded={isMenuOpen}
-                aria-controls="menu-overlay"
-              >
-                <span
-                  className={`absolute w-5 h-0.5 ${barColor} rounded-md transition-all duration-500 ${
-                    isMenuOpen
-                      ? "rotate-45 translate-y-0"
-                      : "-translate-y-1.5 group-hover:translate-x-1.5"
-                  }`}
-                  style={{
-                    transitionTimingFunction:
-                      "cubic-bezier(0.165, 0.84, 0.44, 1)",
-                  }}
-                />
-                <span
-                  className={`absolute w-5 h-[1.5px] ${barColor} rounded-md transition-all duration-500 ${
-                    isMenuOpen
-                      ? "opacity-0 scale-0"
-                      : "opacity-100 scale-100 translate-x-0.5"
-                  }`}
-                  style={{
-                    transitionTimingFunction:
-                      "cubic-bezier(0.165, 0.84, 0.44, 1)",
-                  }}
-                />
-                <span
-                  className={`absolute w-5 h-0.5 ${barColor} rounded-md transition-all duration-500 ${
-                    isMenuOpen
-                      ? "-rotate-45 translate-y-0"
-                      : "translate-y-1.5 group-hover:translate-x-1.5"
-                  }`}
-                  style={{
-                    transitionTimingFunction:
-                      "cubic-bezier(0.165, 0.84, 0.44, 1)",
-                  }}
-                />
-              </button>
-            </nav>
+              </nav>
+            </div>
           </div>
         </div>
 
-        {/* Sub nav — PRIVILEGE + section links */}
-        <nav
-          className="relative hidden lg:flex items-center justify-between mx-6 py-3"
-          aria-label="Navegacao do empreendimento"
-        >
-          <span
-            className={`${textColor} text-xs lg:text-sm tracking-wider font-medium transition-colors duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]`}
-          >
-            PRIVILEGE
-          </span>
+        {/* Sub nav — PRIVILEGE + section links (apenas em telas de empreendimento) */}
+        {hasEnterpriseSections && (
+          <div className="container">
+            <nav
+              className="relative hidden lg:flex items-center justify-between py-3"
+              aria-label="Navegacao do empreendimento"
+            >
+              <span
+                className={`${textColor} text-xs lg:text-sm tracking-wider font-medium transition-colors duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]`}
+              >
+                PRIVILEGE
+              </span>
 
-          <div
-            className={`flex items-center gap-6 lg:gap-8 ${textColor} text-xs lg:text-sm tracking-wider transition-colors duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]`}
-          >
-            <a href="#ficha-tecnica" className={NAV_LINK_CLASS}>
-              FICHA TECNICA
-            </a>
-            <a href="#galeria" className={NAV_LINK_CLASS}>
-              GALERIA
-            </a>
-            <a href="#plantas" className={NAV_LINK_CLASS}>
-              PLANTAS
-            </a>
-            <a href="#projeto" className={NAV_LINK_CLASS}>
-              PROJETO
-            </a>
+              <div
+                className={`flex items-center gap-6 lg:gap-8 ${textColor} text-xs lg:text-sm tracking-wider transition-colors duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]`}
+              >
+                <a href="#ficha-tecnica" className={NAV_LINK_CLASS}>
+                  FICHA TECNICA
+                </a>
+                <a href="#galeria" className={NAV_LINK_CLASS}>
+                  GALERIA
+                </a>
+                <a href="#plantas" className={NAV_LINK_CLASS}>
+                  PLANTAS
+                </a>
+                <a href="#projeto" className={NAV_LINK_CLASS}>
+                  PROJETO
+                </a>
+              </div>
+            </nav>
           </div>
-        </nav>
+        )}
       </header>
 
       <AnimatePresence onExitComplete={() => {}}>
@@ -446,12 +478,12 @@ const navigationItemsDesktop = [
     href: "#home",
   },
   {
-    name: "PROJETO",
-    href: "#projeto",
+    name: "DEPOIMENTOS",
+    href: "#contato",
   },
   {
-    name: "CONTATO",
-    href: "#contato",
+    name: "EMPREENDIMENTOS",
+    href: "#projeto",
   },
 ];
 

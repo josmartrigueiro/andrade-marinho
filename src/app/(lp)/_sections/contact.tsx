@@ -2,6 +2,7 @@
 import { ArrowRight, ChatCenteredText } from "@phosphor-icons/react";
 import { motion, type Variants } from "motion/react";
 import { Button } from "@/components/ui/button";
+import { TextEffect } from "@/components/ui/text-effect";
 
 const containerVariants: Variants = {
   hidden: {},
@@ -251,13 +252,11 @@ function AnimatedLogo() {
 
 export function Contact() {
   return (
-    <section id="contato" className="py-20 md:py-28 lg:py-32">
+    <section id="contato" className="pb-2 md:py-18 lg:py-12">
       <div className="container px-4 lg:px-12">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16 items-center">
-          {/* Coluna Esquerda: Logo com ilustração temática */}
           <AnimatedLogo />
 
-          {/* Coluna Direita: Conteúdo */}
           <motion.div
             className="flex flex-col"
             variants={containerVariants}
@@ -265,7 +264,6 @@ export function Contact() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-            {/* Ícone */}
             <motion.div
               variants={itemVariants}
               className="flex size-13 shrink-0 items-center justify-center rounded-full border border-gray-300/40 bg-white shadow-lg shadow-gray-200 mb-6"
@@ -276,7 +274,6 @@ export function Contact() {
               />
             </motion.div>
 
-            {/* Label */}
             <motion.span
               className="text-sm font-medium uppercase tracking-[0.2em] text-gray-600"
               variants={itemVariants}
@@ -284,17 +281,68 @@ export function Contact() {
               Entre em contato
             </motion.span>
 
-            {/* Título */}
-            <motion.h2
-              className="mt-4 text-3xl font-medium uppercase text-gray-900 md:text-4xl lg:text-5xl leading-tight"
-              variants={itemVariants}
-            >
-              Construindo excelência.
-              <br />
-              Definindo legados.
-            </motion.h2>
+            <h2 className="mt-4 text-3xl font-medium uppercase text-gray-900 md:text-4xl lg:text-5xl leading-tight">
+              <TextEffect
+                per="char"
+                as="span"
+                useViewport
+                viewport={{ once: true, amount: 1 }}
+                delay={0.1}
+                speedReveal={1.2}
+                className="block"
+                variants={{
+                  container: {
+                    hidden: { opacity: 0 },
+                    visible: {
+                      opacity: 1,
+                      transition: { staggerChildren: 0.04, delayChildren: 0.1 },
+                    },
+                  },
+                  item: {
+                    hidden: { opacity: 0, x: -20, filter: "blur(8px)" },
+                    visible: { opacity: 1, x: 0, filter: "blur(0px)" },
+                  },
+                }}
+                segmentTransition={{
+                  duration: 0.6,
+                  ease: [0.25, 0.1, 0.25, 1],
+                }}
+              >
+                Construindo excelência.
+              </TextEffect>
+              <TextEffect
+                per="char"
+                as="span"
+                useViewport
+                viewport={{ once: true, amount: 1 }}
+                delay={0.55}
+                speedReveal={1.2}
+                className="block"
+                variants={{
+                  container: {
+                    hidden: { opacity: 0 },
+                    visible: {
+                      opacity: 1,
+                      transition: {
+                        staggerChildren: 0.04,
+                        delayChildren: 0.35,
+                      },
+                    },
+                  },
+                  item: {
+                    hidden: { opacity: 0, x: -20, filter: "blur(8px)" },
+                    visible: { opacity: 1, x: 0, filter: "blur(0px)" },
+                  },
+                }}
+                segmentTransition={{
+                  duration: 0.6,
+                  ease: [0.25, 0.1, 0.25, 1],
+                }}
+              >
+                Definindo legados.
+              </TextEffect>
+            </h2>
 
-            {/* Descrição */}
             <motion.p
               className="mt-6 text-sm leading-relaxed text-gray-600 md:text-base"
               variants={itemVariants}
@@ -305,11 +353,10 @@ export function Contact() {
               que você merece.
             </motion.p>
 
-            {/* Botão CTA */}
             <motion.div className="mt-10" variants={itemVariants}>
               <Button
                 variant="primary"
-                className="w-60"
+                className="w-64"
                 render={(buttonProps) => (
                   <a
                     {...(buttonProps as React.ComponentProps<"a">)}

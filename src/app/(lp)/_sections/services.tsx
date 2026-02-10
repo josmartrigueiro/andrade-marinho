@@ -1,6 +1,7 @@
 "use client";
 
 import { Separator } from "@/components/ui/separator";
+import { TextEffect } from "@/components/ui/text-effect";
 import { Buildings, SealCheck } from "@phosphor-icons/react";
 import { motion, type Variants } from "motion/react";
 
@@ -64,9 +65,84 @@ export function Services() {
             O QUE FAZEMOS
           </span>
           <h2 className="mt-4 text-2xl font-medium uppercase text-gray-900 md:text-4xl lg:text-5xl">
-            Nossa
-            <br />
-            essência
+            <TextEffect
+              per="char"
+              as="span"
+              useViewport
+              viewport={{ once: true, amount: 1 }}
+              delay={0.1}
+              speedReveal={1.2}
+              className="block"
+              variants={{
+                container: {
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: {
+                      staggerChildren: 0.04,
+                      delayChildren: 0.1,
+                    },
+                  },
+                },
+                item: {
+                  hidden: {
+                    opacity: 0,
+                    x: -20,
+                    filter: "blur(8px)",
+                  },
+                  visible: {
+                    opacity: 1,
+                    x: 0,
+                    filter: "blur(0px)",
+                  },
+                },
+              }}
+              segmentTransition={{
+                duration: 0.8,
+                ease: [0.25, 0.1, 0.25, 1],
+              }}
+            >
+              Nossa
+            </TextEffect>
+            <TextEffect
+              per="char"
+              as="span"
+              useViewport
+              viewport={{ once: true, amount: 1 }}
+              delay={0.35}
+              speedReveal={1.2}
+              className="block"
+              variants={{
+                container: {
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: {
+                      staggerChildren: 0.04,
+                      delayChildren: 0.35,
+                    },
+                  },
+                },
+                item: {
+                  hidden: {
+                    opacity: 0,
+                    x: -20,
+                    filter: "blur(8px)",
+                  },
+                  visible: {
+                    opacity: 1,
+                    x: 0,
+                    filter: "blur(0px)",
+                  },
+                },
+              }}
+              segmentTransition={{
+                duration: 0.6,
+                ease: [0.25, 0.1, 0.25, 1],
+              }}
+            >
+              essência
+            </TextEffect>
           </h2>
           <p className="mt-6 text-sm leading-relaxed text-gray-600 md:text-base">
             Pioneiros no crescimento e desenvolvimento da cidade, estamos

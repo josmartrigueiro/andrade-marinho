@@ -54,7 +54,7 @@ const CONTACT_INFO = {
 };
 
 const linkClassName =
-  "relative text-sm text-foreground transition-opacity duration-200 hover:opacity-70 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-foreground after:scale-x-0 after:origin-right after:transition-transform after:duration-300 after:ease-out hover:after:origin-left hover:after:scale-x-100";
+  "relative w-fit text-sm text-foreground transition-opacity duration-200 hover:opacity-70 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-foreground after:scale-x-0 after:origin-right after:transition-transform after:duration-300 after:ease-out hover:after:origin-left hover:after:scale-x-100";
 
 export function Footer() {
   return (

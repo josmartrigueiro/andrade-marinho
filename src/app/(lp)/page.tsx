@@ -4,10 +4,12 @@ import { CtaPresentation } from "./_sections/cta-presentation";
 import { Hero } from "./_sections/hero";
 import { Presentation } from "./_sections/presentation";
 import { Projects } from "./_sections/projects";
+import { Releases } from "./_sections/releases";
 import { ScrollText } from "./_sections/scroll-text";
 import { Services } from "./_sections/services";
 import { Stats } from "./_sections/stats";
 import { Contact } from "./_sections/contact";
+import { ContactUs } from "./_sections/contact-us";
 
 export default function Home() {
   return (
@@ -46,6 +48,11 @@ export default function Home() {
         <CtaPresentation />
 
         {/* ===============================
+         * RELEASES
+         * =============================== */}
+        <Releases />
+
+        {/* ===============================
          * STATS
          * =============================== */}
         <Stats />
@@ -59,6 +66,11 @@ export default function Home() {
          * PROJECTS
          * =============================== */}
         <Projects />
+
+        {/* ===============================
+         * CONTACT
+         * =============================== */}
+        <Contact />
       </div>
 
       {/* ===============================
@@ -67,9 +79,9 @@ export default function Home() {
       <ScrollText />
 
       {/* ===============================
-       * CONTACT
+       * CONTACT US (FORM)
        * =============================== */}
-      <Contact />
+      <ContactUs />
     </div>
   );
 }

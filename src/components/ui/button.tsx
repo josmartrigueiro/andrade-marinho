@@ -37,6 +37,8 @@ const buttonVariants = cva(
           "border-white text-white shadow-none before:border-white after:bg-primary-dark",
         tertiary:
           "border-primary-light text-primary-light-foreground shadow-xs after:bg-primary-light",
+        "outline-white":
+          "border-white text-white shadow-none before:border-white after:bg-white [&_span]:group-hover/btn:text-primary",
       },
       rounded: {},
     },
