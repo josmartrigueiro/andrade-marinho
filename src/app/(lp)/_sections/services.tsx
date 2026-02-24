@@ -8,15 +8,15 @@ import { motion, type Variants } from "motion/react";
 const services = [
   {
     icon: Buildings,
-    title: "Empreendimentos Residenciais",
+    title: "Engenharia e Planejamento",
     description:
-      "Transformamos sonhos em lares com soluções inovadoras que elevam a qualidade de vida. Desde residenciais a empreendimentos comerciais, nossa equipe combina experiência, estratégia e conhecimento técnico para criar espaços que valorizam cidades e incentivam seu desenvolvimento com sustentabilidade e tecnologia.",
+      "Cada obra é conduzida com acompanhamento técnico especializado, gestão eficiente de cronograma e controle detalhado de execução. Excelência começa na fundação e termina nos detalhes.",
   },
   {
     icon: SealCheck,
-    title: "Qualidade Certificada",
+    title: "Compromisso com Entrega",
     description:
-      "Somos certificados pelo PBQP-H Nível A e ISO 9001, garantindo excelência em cada projeto. Nosso compromisso vai além da construção: cultivamos relações duradouras baseadas no respeito e atenção a cada pessoa que confia em nosso trabalho, fortalecendo e enriquecendo histórias.",
+      "Transparência e respeito ao cliente sustentam cada projeto. Cumprimos prazos, comunicamos com clareza e assumimos responsabilidade em cada etapa. Mais do que chaves, entregamos credibilidade.",
   },
 ];
 
@@ -60,11 +60,11 @@ export function Services() {
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
       >
-        <motion.div className="lg:w-1/4" variants={itemVariants}>
+        <motion.div className="lg:w-[34%]" variants={itemVariants}>
           <span className="text-sm font-medium uppercase tracking-[0.2em] text-gray-600">
-            O QUE FAZEMOS
+            Nossa Base
           </span>
-          <h2 className="mt-4 text-2xl font-medium uppercase text-gray-900 md:text-4xl lg:text-5xl">
+          <h2 className="mt-4 text-2xl font-medium uppercase text-gray-900 md:text-4xl lg:text-5xl -translate-x-1">
             <TextEffect
               per="char"
               as="span"
@@ -102,7 +102,7 @@ export function Services() {
                 ease: [0.25, 0.1, 0.25, 1],
               }}
             >
-              Nossa
+              Precisão e
             </TextEffect>
             <TextEffect
               per="char"
@@ -141,13 +141,13 @@ export function Services() {
                 ease: [0.25, 0.1, 0.25, 1],
               }}
             >
-              essência
+              Compromisso
             </TextEffect>
           </h2>
           <p className="mt-6 text-sm leading-relaxed text-gray-600 md:text-base">
-            Pioneiros no crescimento e desenvolvimento da cidade, estamos
-            comprometidos em atender às necessidades de cada cliente com
-            excelência e cuidado.
+            Não construímos apenas imóveis. Desenvolvemos projetos pensados para
+            valorização patrimonial, segurança estrutural e impacto positivo na
+            cidade. Confiança, para nós, não é discurso. É processo.
           </p>
         </motion.div>
 

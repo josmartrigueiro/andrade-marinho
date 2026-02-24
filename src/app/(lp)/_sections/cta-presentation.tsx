@@ -55,14 +55,15 @@ export function CtaPresentation() {
             variants={itemVariants}
             className="text-xl font-medium italic text-gray-900 md:text-2xl lg:text-4xl max-w-3xl"
           >
-            Pronto para dar o próximo passo e conquistar o lar dos seus sonhos?
+            Projetos pensados para quem valoriza qualidade e visão de longo
+            prazo.
           </motion.h2>
         </div>
 
         <motion.div variants={itemVariants}>
           <Button
             variant="primary"
-            className="w-60"
+            className="w-80"
             render={(buttonProps) => (
               <a
                 {...(buttonProps as React.ComponentProps<"a">)}
@@ -70,7 +71,7 @@ export function CtaPresentation() {
               />
             )}
           >
-            Entre em contato
+            Conheça as oportunidades
             <ArrowRight className="h-4 w-4 align-middle mb-1 group-hover/btn:-rotate-45 transition-all" />
           </Button>
         </motion.div>

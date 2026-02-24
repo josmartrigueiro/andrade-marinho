@@ -51,7 +51,7 @@ export const TextRoll: React.FC<TextRollProps> = ({
               }}
               className="inline-block"
             >
-              {l}
+              {l === " " ? "\u00A0" : l}
             </motion.span>
           );
         })}
@@ -80,7 +80,7 @@ export const TextRoll: React.FC<TextRollProps> = ({
               }}
               className="inline-block"
             >
-              {l}
+              {l === " " ? "\u00A0" : l}
             </motion.span>
           );
         })}

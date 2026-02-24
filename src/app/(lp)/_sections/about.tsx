@@ -117,7 +117,7 @@ export function About() {
               }}
               segmentTransition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
             >
-              Conheça a
+              Padrão que
             </TextEffect>
             <TextEffect
               per="char"
@@ -142,7 +142,7 @@ export function About() {
               }}
               segmentTransition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
             >
-              Andrade Marinho
+              fala por si
             </TextEffect>
           </h2>
 
@@ -150,8 +150,10 @@ export function About() {
             className="text-sm md:text-base text-primary-foreground/80 tracking-wider leading-relaxed mb-12 max-w-md"
             variants={itemVariants}
           >
-            Transformando sonhos em realidade, criando espaços que elevam a
-            qualidade de vida e o bem-estar das pessoas.
+            Cada projeto é desenvolvido com critérios técnicos rigorosos e
+            atenção absoluta aos detalhes. Da concepção à entrega, o foco é
+            gerar valor real para quem mora e para quem investe. Porque
+            qualidade não é diferencial. É fundamento.
           </motion.p>
 
           <motion.div variants={itemVariants}>
@@ -165,7 +167,7 @@ export function About() {
                 />
               )}
             >
-              Andrade Marinho
+              Solicite informações
             </Button>
           </motion.div>
         </motion.div>

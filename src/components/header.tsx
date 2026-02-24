@@ -157,17 +157,25 @@ export function Header() {
   const showFullNav = isTop || isScrollingUp;
   const showSimpleLogo = isScrollingDown;
 
-  const textColor = "text-foreground";
-  const barColor = "bg-foreground";
-  const borderColor = isTop ? "border-transparent" : "border-border";
-  const logoSrc = "/logo-blue.png";
+  const textColor = isMenuOpen ? "text-primary-foreground" : "text-foreground";
+  const barColor = isMenuOpen ? "bg-primary-foreground" : "bg-foreground";
+  const borderColor = isTop && !isMenuOpen ? "border-transparent" : isMenuOpen ? "border-primary-foreground/20" : "border-border";
+  const logoSrc = isMenuOpen ? "/logo-white.png" : "/logo-blue.png";
 
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 w-full" role="banner">
+        {/* Scroll bg — desliza de cima ao rolar */}
         <div
           className={`absolute inset-0 bg-background transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
             showBgPrimary ? "translate-y-0" : "-translate-y-full"
+          }`}
+          aria-hidden="true"
+        />
+        {/* Menu bg — muda de cor instantaneamente, sem animação de y */}
+        <div
+          className={`absolute inset-0 bg-primary transition-opacity duration-300 ${
+            isMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
           aria-hidden="true"
         />
@@ -199,7 +207,7 @@ export function Header() {
                 </div>
 
                 <a
-                  href="#home"
+                  href="/"
                   className="lg:hidden"
                   aria-label="Andrade Marinho Empreendimentos - Inicio"
                 >
@@ -214,7 +222,7 @@ export function Header() {
                 </a>
 
                 <a
-                  href="#home"
+                  href="/"
                   className="hidden lg:block absolute left-1/2 -translate-x-1/2"
                   aria-label="Andrade Marinho Empreendimentos - Inicio"
                 >
@@ -438,7 +446,7 @@ export function Header() {
                               },
                         },
                       }}
-                      className="h-full w-full bg-background origin-top"
+                      className="h-full w-full bg-primary origin-top"
                       style={{
                         willChange: prefersReducedMotion ? "auto" : "transform",
                         transformOrigin: "top",
@@ -596,8 +604,8 @@ const MenuItems = ({ onItemClick }: { onItemClick: () => void }) => {
                 center
                 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl uppercase leading-[0.8] tracking-[-0.03em] transition-opacity duration-300 ${
                   isActive
-                    ? "text-foreground opacity-100"
-                    : "text-foreground opacity-50"
+                    ? "text-primary-foreground opacity-100"
+                    : "text-primary-foreground opacity-50"
                 }`}
               >
                 {item.name}

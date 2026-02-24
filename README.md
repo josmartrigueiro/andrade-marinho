@@ -34,3 +34,28 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+
+
+
+
+
+
+
+
+
+
+
+| Gateway        | Meio de pagamento     | Taxa suposta           | Gateway fica    | Sobra no app (líquido) | Sua comissão (10%) | Vai pro trabalhador |
+|----------------|-----------------------|------------------------|-----------------|------------------------|--------------------|---------------------|
+| Pagar.me       | Pix                   | 1,5%                   | R$ 1.500,00     | R$ 98.500,00           | R$ 10.000,00       | R$ 88.500,00        |
+| Pagar.me       | Cartão crédito        | 3,5%                   | R$ 3.500,00     | R$ 96.500,00           | R$ 10.000,00       | R$ 86.500,00        |
+| Pagar.me       | Boleto                | R$ 3,00 fixo           | R$ 3,00         | R$ 99.997,00           | R$ 10.000,00       | R$ 89.997,00        |
+| Stripe         | Cartão crédito        | 4%                     | R$ 4.000,00     | R$ 96.000,00           | R$ 10.000,00       | R$ 86.000,00        |
+| Stripe         | Pix (via parceiro BR) | 2%                     | R$ 2.000,00     | R$ 98.000,00           | R$ 10.000,00       | R$ 88.000,00        |
+| Mercado Pago   | Pix cobrança          | 1%                     | R$ 1.000,00     | R$ 99.000,00           | R$ 10.000,00       | R$ 89.000,00        |
+| Mercado Pago   | Cartão crédito        | 4%                     | R$ 4.000,00     | R$ 96.000,00           | R$ 10.000,00       | R$ 86.000,00        |
+| Mercado Pago   | Boleto                | R$ 3,50 fixo           | R$ 3,50         | R$ 99.996,50           | R$ 10.000,00       | R$ 89.996,50        |
+| Celcoin / infra| Pix                   | 1%                     | R$ 1.000,00     | R$ 99.000,00           | R$ 10.000,00       | R$ 89.000,00        |
+| Celcoin / infra| Cartão (via gateway)  | 3,5%                   | R$ 3.500,00     | R$ 96.500,00           | R$ 10.000,00       | R$ 86.500,00        |

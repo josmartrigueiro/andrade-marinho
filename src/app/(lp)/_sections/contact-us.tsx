@@ -113,7 +113,6 @@ export function ContactUs() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
-          {/* Icon Badge */}
           <motion.div
             variants={itemVariants}
             className="flex size-13 shrink-0 items-center justify-center rounded-full border border-gray-300/40 bg-white shadow-lg shadow-gray-200 mb-5"
@@ -121,7 +120,6 @@ export function ContactUs() {
             <Envelope className="size-5.5 text-gray-700" weight="light" />
           </motion.div>
 
-          {/* Label */}
           <motion.span
             className="text-sm font-medium uppercase tracking-[0.2em] text-gray-600"
             variants={itemVariants}
@@ -129,7 +127,6 @@ export function ContactUs() {
             Encontre seu imóvel
           </motion.span>
 
-          {/* Heading */}
           <h2 className="mt-3 text-3xl font-medium uppercase text-gray-900 md:text-4xl lg:text-5xl leading-tight">
             <TextEffect
               per="char"
@@ -157,7 +154,7 @@ export function ContactUs() {
                 ease: [0.25, 0.1, 0.25, 1],
               }}
             >
-              Realize o sonho
+              Encontre o imóvel ideal
             </TextEffect>
             <TextEffect
               per="char"
@@ -185,20 +182,18 @@ export function ContactUs() {
                 ease: [0.25, 0.1, 0.25, 1],
               }}
             >
-              do seu novo lar.
+              para o seu momento.
             </TextEffect>
           </h2>
 
-          {/* Description */}
           <motion.p
             className="mt-4 text-sm leading-relaxed text-gray-600 md:text-base max-w-xl"
             variants={itemVariants}
           >
-            Seja um apartamento na planta ou pronto para morar, nossa equipe de
-            consultores irá apresentar as melhores opções para o seu perfil.
+            Nossa equipe especializada irá compreender seu perfil e apresentar
+            opções alinhadas ao seu estilo de vida e objetivos.
           </motion.p>
 
-          {/* Form */}
           <motion.form
             className="mt-10"
             variants={itemVariants}
@@ -228,7 +223,6 @@ export function ContactUs() {
                 />
               </div>
 
-              {/* Email */}
               <Input
                 label="E-mail"
                 type="email"
@@ -237,7 +231,6 @@ export function ContactUs() {
                 {...register("email")}
               />
 
-              {/* Message */}
               <Textarea
                 label="Mensagem"
                 rows={3}
@@ -248,11 +241,10 @@ export function ContactUs() {
               />
             </div>
 
-            {/* Submit */}
             <div className="mt-10">
               <Button
                 variant="primary"
-                className="w-full md:w-auto"
+                className="w-full md:w-auto px-7"
                 disabled={isSubmitting}
                 type="submit"
               >
