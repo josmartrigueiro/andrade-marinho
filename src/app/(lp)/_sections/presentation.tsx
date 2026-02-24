@@ -67,7 +67,7 @@ export function Presentation() {
             transition={transition}
           >
             <h3 className="text-sm font-medium uppercase tracking-[0.2em] text-primary-light">
-              INTRODUÇÃO
+              SOBRE A ANDRADE MARINHO
             </h3>
           </motion.div>
 
@@ -93,11 +93,10 @@ export function Presentation() {
               variants={variants}
               transition={transition}
             >
-              Andrade Marinho Empreendimentos é uma construtora sediada no
-              Nordeste, dedicada a entregar apartamentos com acabamento de
-              excelência. Unindo conforto, funcionalidade e cuidado, nosso
-              propósito é transformar sonhos em lares tangíveis, humanos e
-              duráveis.
+              Credibilidade que se constrói todos os dias. A Andrade Marinho
+              nasce da experiência de um grupo consolidado no setor imobiliário,
+              trazendo para a cidade projetos que unem técnica, responsabilidade
+              e visão de longo prazo.
             </motion.h2>
 
             <motion.div
