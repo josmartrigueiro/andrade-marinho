@@ -64,7 +64,7 @@ export default function RootLayout({
             backgroundColorLight: "bg-background",
             backgroundColorDark: "bg-primary",
             minDuration: 2000,
-            maxDuration: 3000,
+            maxDuration: 0,
           }}
         >
           <CustomCursor />

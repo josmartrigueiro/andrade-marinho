@@ -6,18 +6,20 @@ import { useImagePreload } from "@/hooks/use-image-preload";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 const ANIMATION_TIMINGS = {
-  logoReveal: 0.3,
-  logoStay: 0.25,
+  logoReveal: 0.25,
+  logoStay: 0.1,
   drawerSlideDown: 0.6,
   fillTransition: 0.3,
-  logoWhiteStay: 0.3,
+  logoWhiteStay: 0.2,
   logoFadeOut: 0.5,
-  drawerSlideUp: 0.7,
+  drawerSlideUp: 0.82,
 } as const;
+
+const COMPLETE_EARLY_MS = 250;
 
 const ANIMATION_EASINGS = {
   smooth: [0.25, 0.46, 0.45, 0.94] as const,
-  drawer: [0.22, 0.61, 0.36, 1.0] as const,
+  drawer: [0.22, 0.61, 0.36, 0.94] as const,
 } as const;
 
 const LOGO_COLORS = {
@@ -90,8 +92,8 @@ const backgroundVariants: Variants = {
   hidden: {
     opacity: 0,
     transition: {
-      duration: ANIMATION_TIMINGS.drawerSlideUp,
-      ease: ANIMATION_EASINGS.drawer,
+      duration: 0.15,
+      ease: "linear",
     },
   },
 };
@@ -184,7 +186,7 @@ export function SplashScreen({
     }, logoExitTime);
 
     const completionTime =
-      logoExitTime + ANIMATION_TIMINGS.drawerSlideUp * 1000;
+      logoExitTime + ANIMATION_TIMINGS.drawerSlideUp * 1000 - COMPLETE_EARLY_MS;
 
     setTimeout(() => {
       onComplete?.();
@@ -230,7 +232,7 @@ export function SplashScreen({
 
   return (
     <motion.div
-      className="fixed inset-0 z-9999 overflow-hidden"
+      className="fixed inset-0 z-9999"
       variants={containerVariants}
       initial="visible"
       animate="visible"
@@ -243,7 +245,7 @@ export function SplashScreen({
       />
       {showDrawer && (
         <motion.div
-          className={`absolute inset-0 ${backgroundColorDark}`}
+          className={`fixed inset-0 ${backgroundColorDark}`}
           variants={drawerVariants}
           initial="top"
           animate={drawerState}
