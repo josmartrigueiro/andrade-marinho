@@ -4,9 +4,9 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 
 const phrases = [
-  "Ansioso(a) para começar a construir seu futuro?",
-  "Junte-se à Andrade Marinho.",
-  "Entre em contato.",
+  "Seu próximo capítulo começa com uma decisão.",
+  "Escolha construir com quem constrói excelência.",
+  "Agende uma conversa personalizada.",
 ];
 
 export function ScrollText() {
