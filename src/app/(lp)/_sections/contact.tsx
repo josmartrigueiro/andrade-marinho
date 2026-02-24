@@ -308,7 +308,7 @@ export function Contact() {
                   ease: [0.25, 0.1, 0.25, 1],
                 }}
               >
-                Construindo excelência.
+                Excelência que
               </TextEffect>
               <TextEffect
                 per="char"
@@ -339,7 +339,7 @@ export function Contact() {
                   ease: [0.25, 0.1, 0.25, 1],
                 }}
               >
-                Definindo legados.
+                começa na decisão.
               </TextEffect>
             </h2>
 
@@ -347,24 +347,24 @@ export function Contact() {
               className="mt-6 text-sm leading-relaxed text-gray-600 md:text-base"
               variants={itemVariants}
             >
-              Estamos aqui para transformar suas ideias em realidade. Entre em
-              contato conosco para iniciar sua jornada em direção a um
-              empreendimento que reflita verdadeiramente o padrão de excelência
-              que você merece.
+              Escolher um empreendimento é uma decisão importante. Nossa equipe
+              está pronta para apresentar informações detalhadas, esclarecer
+              dúvidas e orientar você com transparência e segurança em cada
+              etapa do processo.
             </motion.p>
 
             <motion.div className="mt-10" variants={itemVariants}>
               <Button
                 variant="primary"
-                className="w-64"
+                className="w-68"
                 render={(buttonProps) => (
                   <a
                     {...(buttonProps as React.ComponentProps<"a">)}
-                    href="#contato"
+                    href="#fale-conosco"
                   />
                 )}
               >
-                Entre em contato
+                Fale com um consultor
                 <ArrowRight className="h-4 w-4 align-middle mb-1 group-hover/btn:-rotate-45 transition-all" />
               </Button>
             </motion.div>
