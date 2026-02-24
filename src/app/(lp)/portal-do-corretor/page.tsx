@@ -196,7 +196,7 @@ export default function PortalDoCorretor() {
                   ease: [0.25, 0.1, 0.25, 1],
                 }}
               >
-                Seja um corretor
+                Faça parte de um
               </TextEffect>
               <TextEffect
                 per="char"
@@ -227,7 +227,7 @@ export default function PortalDoCorretor() {
                   ease: [0.25, 0.1, 0.25, 1],
                 }}
               >
-                parceiro.
+                portfólio que vende valor.
               </TextEffect>
             </h1>
 
@@ -235,9 +235,8 @@ export default function PortalDoCorretor() {
               className="mt-4 text-sm leading-relaxed text-gray-600 md:text-base max-w-md"
               variants={itemVariants}
             >
-              Junte-se à rede de corretores Andrade Marinho e tenha acesso a
-              empreendimentos de alto padrão, ferramentas de venda e suporte
-              comercial exclusivo.
+              Conecte-se a empreendimentos de alto padrão, suporte comercial
+              estruturado e condições pensadas para maximizar sua performance.
             </motion.p>
 
             <motion.div
@@ -349,7 +348,7 @@ export default function PortalDoCorretor() {
               <motion.div className="mt-4" variants={itemVariants}>
                 <Button
                   variant="primary"
-                  className="w-full md:w-56"
+                  className="w-full md:w-auto px-7"
                   disabled={isSubmitting}
                   type="submit"
                 >
