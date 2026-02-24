@@ -267,7 +267,7 @@ export function Releases() {
           <div className="flex justify-center mb-0">
             <Button
               variant="outline-white"
-              render={(props) => <a {...props} href="/" />}
+              render={(props) => <a {...props} href="#fale-conosco" />}
               className="w-64"
             >
               Ver empreendimento

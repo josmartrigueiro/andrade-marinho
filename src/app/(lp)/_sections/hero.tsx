@@ -7,13 +7,13 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { TextEffect } from "@/components/ui/text-effect";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
+import { useSplash } from "@/providers/splash-provider";
 
 const easeOutCubic = [0.215, 0.61, 0.355, 1] as const;
-const HERO_BASE_DELAY = 2.3;
+const HERO_BASE_DELAY = 0;
 const AUTOPLAY_DELAY = 8000;
 const PROGRESS_INTERVAL = 50;
 const FADE_DURATION_MS = 1200;
-const PROGRESS_BAR_TRANSITION_MS = 100;
 
 const HERO_SLIDES = [
   {
@@ -49,6 +49,8 @@ const slideCount = HERO_SLIDES.length;
 
 export function Hero() {
   const prefersReducedMotion = useReducedMotion();
+  const { isVisible: splashVisible } = useSplash();
+  const [animationReady, setAnimationReady] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const progressRef = useRef(0);
@@ -56,6 +58,12 @@ export function Hero() {
   const autoplayRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const heroRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!splashVisible) {
+      setAnimationReady(true);
+    }
+  }, [splashVisible]);
 
   const startProgress = useCallback(() => {
     if (intervalRef.current) clearInterval(intervalRef.current);
@@ -192,7 +200,7 @@ export function Hero() {
         <motion.div
           className="absolute right-[max(1.5rem,calc((100vw-1440px)/2))] bottom-96 flex flex-col items-center gap-2 text-hero-accent/60"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          animate={animationReady ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.4, delay: 1.4, ease: easeOutCubic }}
           aria-hidden
         >
@@ -207,62 +215,74 @@ export function Hero() {
         <div className="relative z-10 flex flex-col justify-center pt-24 md:pt-(--header-height) pb-16">
           <div className="max-w-2xl px-4 md:px-0">
             <h1 className="mt-3 md:mt-4 text-hero-accent text-3xl font-medium uppercase tracking-tight leading-tight sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl">
-              <TextEffect
-                per="word"
-                delay={HERO_BASE_DELAY + 0.35}
-                as="span"
-                preset="elegant"
-                speedReveal={0.7}
-                speedSegment={0.3}
-                segmentTransition={{ duration: 0.45, ease: easeOutCubic }}
-                className="block sm:whitespace-nowrap"
-              >
-                Desenhando espaços
-              </TextEffect>
-              <TextEffect
-                per="word"
-                delay={HERO_BASE_DELAY + 0.5}
-                as="span"
-                preset="elegant"
-                speedReveal={0.7}
-                speedSegment={0.3}
-                segmentTransition={{ duration: 0.45, ease: easeOutCubic }}
-                className="block mt-1 sm:whitespace-nowrap"
-              >
-                que conectam
-              </TextEffect>
-              <TextEffect
-                per="word"
-                delay={HERO_BASE_DELAY + 0.65}
-                as="span"
-                preset="elegant"
-                speedReveal={0.7}
-                speedSegment={0.3}
-                segmentTransition={{ duration: 0.45, ease: easeOutCubic }}
-                className="block mt-1 sm:whitespace-nowrap"
-              >
-                vidas.
-              </TextEffect>
+              {animationReady && (
+                <>
+                  <TextEffect
+                    per="word"
+                    delay={HERO_BASE_DELAY + 0.1}
+                    as="span"
+                    preset="elegant"
+                    speedReveal={0.7}
+                    speedSegment={0.3}
+                    segmentTransition={{ duration: 0.45, ease: easeOutCubic }}
+                    className="block sm:whitespace-nowrap"
+                  >
+                    Construa seu
+                  </TextEffect>
+                  <TextEffect
+                    per="word"
+                    delay={HERO_BASE_DELAY + 0.5}
+                    as="span"
+                    preset="elegant"
+                    speedReveal={0.7}
+                    speedSegment={0.3}
+                    segmentTransition={{ duration: 0.45, ease: easeOutCubic }}
+                    className="block mt-1 sm:whitespace-nowrap"
+                  >
+                    futuro com
+                  </TextEffect>
+                  <TextEffect
+                    per="word"
+                    delay={HERO_BASE_DELAY + 0.65}
+                    as="span"
+                    preset="elegant"
+                    speedReveal={0.7}
+                    speedSegment={0.3}
+                    segmentTransition={{ duration: 0.45, ease: easeOutCubic }}
+                    className="block mt-1 sm:whitespace-nowrap"
+                  >
+                    Solidez.
+                  </TextEffect>
+                </>
+              )}
             </h1>
 
             <motion.p
-              className="mt-4 md:mt-7 text-hero-accent/80 text-sm sm:text-base leading-relaxed max-w-md"
+              className="mt-4 md:mt-7 text-hero-accent/80 text-sm sm:text-base leading-relaxed max-w-lg"
               initial={{ opacity: 0, y: 16, filter: "blur(8px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              animate={
+                animationReady
+                  ? { opacity: 1, y: 0, filter: "blur(0px)" }
+                  : { opacity: 0, y: 16, filter: "blur(8px)" }
+              }
               transition={{
                 duration: 0.7,
                 ease: easeOutCubic,
                 delay: HERO_BASE_DELAY + 0.8,
               }}
             >
-              Projetos com autenticidade, funcionalidade e elegância, pensados
-              em cada detalhe para a vida real.
+              Empreendimentos que unem solidez construtiva, localização
+              estratégica e padrão elevado de acabamento.
             </motion.p>
 
             <motion.div
               className="mt-8 md:mt-10 flex flex-wrap items-center"
               initial={{ opacity: 0, y: 18, filter: "blur(10px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              animate={
+                animationReady
+                  ? { opacity: 1, y: 0, filter: "blur(0px)" }
+                  : { opacity: 0, y: 18, filter: "blur(10px)" }
+              }
               transition={{
                 duration: 0.65,
                 ease: easeOutCubic,
@@ -271,15 +291,15 @@ export function Hero() {
             >
               <Button
                 variant="primary"
-                className="w-72"
+                className="w-fit min-w-[16rem]"
                 render={(buttonProps) => (
                   <a
                     {...(buttonProps as React.ComponentProps<"a">)}
-                    href="#about"
+                    href="#fale-conosco"
                   />
                 )}
               >
-                Conheça a Andrade Marinho
+                Ver empreendimentos
               </Button>
             </motion.div>
           </div>
@@ -291,17 +311,28 @@ export function Hero() {
             initial={
               prefersReducedMotion
                 ? {}
-                : { opacity: 0, scale: 0.96, filter: "blur(12px)" }
+                : { clipPath: "inset(50% -80px 50% -80px)", filter: "blur(16px)" }
             }
             animate={
-              prefersReducedMotion
-                ? { opacity: 1 }
-                : { opacity: 1, scale: 1, filter: "blur(0px)" }
+              !animationReady
+                ? prefersReducedMotion
+                  ? { opacity: 0 }
+                  : { clipPath: "inset(50% -80px 50% -80px)", filter: "blur(16px)" }
+                : prefersReducedMotion
+                  ? { opacity: 1 }
+                  : { clipPath: "inset(-80px -80px -80px -80px)", filter: "blur(0px)" }
             }
             transition={{
-              duration: prefersReducedMotion ? 0.6 : 0.9,
-              ease: easeOutCubic,
-              delay: HERO_BASE_DELAY + 0.3,
+              clipPath: {
+                duration: prefersReducedMotion ? 0.6 : 1.6,
+                ease: [0.87, 0, 0.13, 1],
+                delay: HERO_BASE_DELAY + 1.3,
+              },
+              filter: {
+                duration: prefersReducedMotion ? 0.6 : 1.0,
+                ease: [0.25, 0.46, 0.45, 0.94],
+                delay: HERO_BASE_DELAY + 1.3,
+              },
             }}
             style={
               prefersReducedMotion || isMobile
