@@ -2,33 +2,47 @@
 
 import { Separator } from "@/components/ui/separator";
 import { TextEffect } from "@/components/ui/text-effect";
-import { motion, type Variants } from "motion/react";
-import { CountingNumber } from "@/components/ui/counting-number";
+import {
+  motion,
+  useInView,
+  useMotionValue,
+  useSpring,
+  type Variants,
+} from "motion/react";
+import * as React from "react";
 
 const stats = [
   {
-    number: "+15",
-    value: 15,
+    id: "empreendimentos",
+    value: 9,
+    prefix: "",
     suffix: "",
-    label: "PROJETOS\nLANÇADOS",
+    decimals: 0,
+    label: "EMPREENDIMENTOS\nLANÇADOS",
   },
   {
-    number: "+13",
-    value: 13,
+    id: "unidades",
+    value: 600,
+    prefix: "+",
     suffix: "",
-    label: "PROJETOS\nENTREGUES",
+    decimals: 0,
+    label: "UNIDADES\nCONSTRUÍDAS",
   },
   {
-    number: "+222mil",
-    value: 222,
-    suffix: "mil",
-    label: "METROS QUADRADOS\nCONSTRUÍDOS",
+    id: "area-total",
+    value: 85220,
+    prefix: "",
+    suffix: " m²",
+    decimals: 1,
+    label: "ÁREA TOTAL\nCONSTRUÍDA",
   },
   {
-    number: "+1007mil",
-    value: 1007,
-    suffix: "mil",
-    label: "CLIENTES",
+    id: "area-privativa",
+    value: 47385,
+    prefix: "",
+    suffix: " m²",
+    decimals: 2,
+    label: "ÁREA PRIVATIVA\nCONSTRUÍDA",
   },
 ];
 
@@ -59,19 +73,57 @@ const itemVariants: Variants = {
   },
 };
 
-function AnimatedNumber({ value, suffix }: { value: number; suffix: string }) {
+function AnimatedNumber({
+  value,
+  prefix = "",
+  suffix = "",
+  decimals = 0,
+}: {
+  value: number;
+  prefix?: string;
+  suffix?: string;
+  decimals?: number;
+}) {
+  const ref = React.useRef<HTMLSpanElement>(null);
+  const motionVal = useMotionValue(0);
+  const springVal = useSpring(motionVal, { stiffness: 80, damping: 30 });
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const formatter = React.useMemo(
+    () =>
+      new Intl.NumberFormat("pt-BR", {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals,
+      }),
+    [decimals],
+  );
+
+  React.useEffect(() => {
+    if (isInView) {
+      motionVal.set(value);
+    }
+  }, [isInView, value, motionVal]);
+
+  React.useEffect(() => {
+    const unsubscribe = springVal.on("change", (latest) => {
+      if (ref.current) {
+        ref.current.textContent = prefix + formatter.format(latest);
+      }
+    });
+    return () => unsubscribe();
+  }, [springVal, prefix, formatter]);
+
   return (
-    <span>
-      +
-      <CountingNumber
-        number={value}
-        fromNumber={0}
-        inView={true}
-        inViewMargin="-100px"
-        inViewOnce={true}
-        transition={{ stiffness: 120, damping: 25 }}
-      />
-      {suffix}
+    <span className="inline-flex items-baseline gap-1 whitespace-nowrap">
+      <span ref={ref}>
+        {prefix}
+        {formatter.format(0)}
+      </span>
+      {suffix && (
+        <span className="text-base md:text-xl lg:text-2xl font-normal">
+          {suffix}
+        </span>
+      )}
     </span>
   );
 }
@@ -108,7 +160,10 @@ export function Stats() {
                     hidden: { opacity: 0 },
                     visible: {
                       opacity: 1,
-                      transition: { staggerChildren: 0.04, delayChildren: 0.1 },
+                      transition: {
+                        staggerChildren: 0.04,
+                        delayChildren: 0.1,
+                      },
                     },
                   },
                   item: {
@@ -157,15 +212,20 @@ export function Stats() {
             </h2>
 
             <div className="space-y-0">
-              {stats.map((stat, index) => (
+              {stats.map((stat) => (
                 <motion.div
-                  key={stat.number}
+                  key={stat.id}
                   className="relative"
                   variants={itemVariants}
                 >
-                  <div className="flex items-center pt-10 pb-5">
-                    <span className="w-72 leading-none tracking-wider text-2xl font-medium uppercase text-gray-900 md:text-4xl lg:text-5xl">
-                      <AnimatedNumber value={stat.value} suffix={stat.suffix} />
+                  <div className="flex items-center gap-4 md:gap-8 pt-10 pb-5">
+                    <span className="shrink-0 w-28 md:w-56 lg:w-72 tabular-nums leading-none tracking-wider text-2xl font-medium uppercase text-gray-900 md:text-4xl lg:text-5xl">
+                      <AnimatedNumber
+                        value={stat.value}
+                        prefix={stat.prefix}
+                        suffix={stat.suffix}
+                        decimals={stat.decimals}
+                      />
                     </span>
 
                     <span className="whitespace-pre-line text-sm font-normal uppercase leading-relaxed tracking-wider text-primary-dark">

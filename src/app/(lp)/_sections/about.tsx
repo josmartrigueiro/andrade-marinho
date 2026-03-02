@@ -73,7 +73,7 @@ export function About() {
           style={{ y: imageY }}
         >
           <Image
-            src="/privilege/street-frontage.jpg"
+            src="/ventures/miguel-carrilho-1.jpg"
             alt="Fachada do empreendimento Andrade Marinho"
             fill
             className="object-cover"

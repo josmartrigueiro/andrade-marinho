@@ -42,11 +42,48 @@ const ppmoriSans = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Andrade Marinho - Invista na melhor vista",
+  title: {
+    default: "Andrade Marinho — Construtora de Alto Padrão em Natal, RN",
+    template: "%s | Andrade Marinho",
+  },
   description:
-    "Andrade marinho é uma construtora focada em construir empreendimentos com um alto nível de acabamento e qualidade",
+    "Empreendimentos residenciais de alto padrão em Natal, RN. Apartamentos com localização estratégica, acabamento premium e solidez construtiva. Conheça Edifício Themis, Miguel Carrilho, Residencial Dunas e Bosque Tirol.",
+  metadataBase: new URL("https://andrademarinho.com.br"),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    url: "https://andrademarinho.com.br",
+    siteName: "Andrade Marinho",
+    title: "Andrade Marinho — Construtora de Alto Padrão em Natal, RN",
+    description:
+      "Apartamentos de alto padrão em Natal, RN. Solidez construtiva, localização estratégica e acabamento premium.",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Andrade Marinho — Empreendimentos de Alto Padrão em Natal, RN",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Andrade Marinho — Construtora de Alto Padrão em Natal, RN",
+    description:
+      "Apartamentos de alto padrão em Natal, RN. Conheça nossos empreendimentos.",
+    images: ["/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
   icons: {
     icon: "/icon-page.svg",
+    apple: "/apple-touch-icon.png",
   },
 };
 

@@ -1,11 +1,11 @@
 "use client";
 
 import {
-  ChartBar,
+  Buildings,
   DiamondsFour,
   Heart,
-  PencilRuler,
-  SlidersHorizontal,
+  MapPin,
+  ShieldCheck,
 } from "@phosphor-icons/react";
 import { motion, type Variants } from "motion/react";
 import { TextEffect } from "@/components/ui/text-effect";
@@ -41,44 +41,52 @@ const itemVariants: Variants = {
 
 const features = [
   {
-    icon: PencilRuler,
-    title: "Design Moderno e Inovador",
+    icon: MapPin,
+    title: "Localizações Privilegiadas",
   },
   {
     icon: DiamondsFour,
-    title: "Renderizações Realistas",
+    title: "Acabamento Premium",
   },
   {
     icon: Heart,
-    title: "Qualidade",
+    title: "Qualidade de Vida",
   },
   {
-    icon: SlidersHorizontal,
-    title: "Acessível e Personalizado",
+    icon: ShieldCheck,
+    title: "Confiança e Solidez",
   },
 ];
 
-const slideImages = [
-  [
-    "/privilege/front-walkway.jpg",
-    "/privilege/garden-courtyard.jpg",
-    "/privilege/street-frontage.jpg",
-  ],
-  [
-    "/privilege/gourmet-lounge.jpg",
-    "/privilege/praca-caramanchao.jpg",
-    "/privilege/ocean-lounge-terrace.jpg",
-  ],
-  [
-    "/privilege/rooftop-social-club.jpg",
-    "/privilege/infinity-pool-view.jpg",
-    "/privilege/resort-pool-deck.jpg",
-  ],
-  [
-    "/privilege/sunset-living-patio.jpg",
-    "/privilege/gourmet-lounge.jpg",
-    "/privilege/garden-courtyard.jpg",
-  ],
+const ventures = [
+  {
+    name: "Themis",
+    images: [
+      "/ventures/themis-1.jpg",
+      "/ventures/themis-4.jpg",
+      "/ventures/themis-7.jpg",
+    ],
+  },
+  {
+    name: "Miguel Carrilho",
+    images: [
+      "/ventures/miguel-carrilho-2.jpg",
+      "/ventures/miguel-carrilho-3.jpg",
+      "/ventures/miguel-carrilho-5.jpg",
+    ],
+  },
+  {
+    name: "Dunas",
+    images: [
+      "/ventures/dunas-3.jpg",
+      "/ventures/dunas-1.jpg",
+      "/ventures/dunas-2.jpg",
+    ],
+  },
+  {
+    name: "Bosque Tirol",
+    images: ["/ventures/bosque-tirol-1.jpg", "/ventures/bosque-tirol-2.jpg"],
+  },
 ];
 
 const intervals = [7000, 8500, 5500, 7500];
@@ -86,10 +94,12 @@ const intervals = [7000, 8500, 5500, 7500];
 function ImageSlideshow({
   images,
   interval,
+  name,
   className,
 }: {
   images: string[];
   interval: number;
+  name: string;
   className?: string;
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -117,7 +127,7 @@ function ImageSlideshow({
       <div className="absolute inset-0">
         <Image
           src={images[0]}
-          alt="Projeto Andrade Marinho"
+          alt={`Empreendimento ${name} - Andrade Marinho`}
           fill
           className="object-cover"
           sizes="(max-width: 768px) 100vw, 50vw"
@@ -140,14 +150,19 @@ function ImageSlideshow({
         >
           <Image
             src={src}
-            alt="Projeto Andrade Marinho"
+            alt={`Empreendimento ${name} - Andrade Marinho`}
             fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 50vw"
-            priority
           />
         </motion.div>
       ))}
+
+      <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-primary/70 via-primary/30 to-transparent p-4 pt-10">
+        <span className="text-sm font-semibold uppercase tracking-[0.15em] text-white drop-shadow-lg">
+          {name}
+        </span>
+      </div>
     </div>
   );
 }
@@ -168,7 +183,7 @@ export function Projects() {
               className="flex size-13 items-center justify-center rounded-full border border-gray-300/40 bg-white shadow-lg shadow-gray-200 mb-4"
               variants={itemVariants}
             >
-              <ChartBar
+              <Buildings
                 className="size-5.5 font-bold stroke-2 text-gray-700"
                 strokeWidth={1.5}
               />
@@ -178,7 +193,7 @@ export function Projects() {
               className="text-sm font-medium uppercase tracking-[0.2em] text-gray-600 mb-2"
               variants={itemVariants}
             >
-              Projetos
+              Empreendimentos
             </motion.span>
 
             <h2 className="text-2xl font-medium uppercase text-gray-900 md:text-4xl lg:text-5xl">
@@ -208,7 +223,7 @@ export function Projects() {
                   ease: [0.25, 0.1, 0.25, 1],
                 }}
               >
-                Espaços
+                Nossas
               </TextEffect>
               <TextEffect
                 per="char"
@@ -239,7 +254,7 @@ export function Projects() {
                   ease: [0.25, 0.1, 0.25, 1],
                 }}
               >
-                Redefinidos
+                Entregas
               </TextEffect>
             </h2>
 
@@ -247,9 +262,9 @@ export function Projects() {
               className="text-base text-gray-600 leading-relaxed mt-6 mb-6 max-w-md"
               variants={itemVariants}
             >
-              Elaborando sua visão única. Os serviços de Arquitetura, Interiores
-              e Sustentabilidade da Andrade Marinho redefinem espaços com
-              inovação e elegância.
+              Conheça os empreendimentos que levam a assinatura Andrade Marinho.
+              Cada projeto reflete nosso compromisso com qualidade, design
+              sofisticado e valorização do seu investimento.
             </motion.p>
 
             <motion.div className="flex flex-col" variants={containerVariants}>
@@ -300,8 +315,9 @@ export function Projects() {
               }}
             >
               <ImageSlideshow
-                images={slideImages[0]}
+                images={ventures[0].images}
                 interval={intervals[0]}
+                name={ventures[0].name}
                 className="h-full"
               />
             </motion.div>
@@ -319,8 +335,9 @@ export function Projects() {
               }}
             >
               <ImageSlideshow
-                images={slideImages[1]}
+                images={ventures[1].images}
                 interval={intervals[1]}
+                name={ventures[1].name}
                 className="h-full"
               />
             </motion.div>
@@ -338,8 +355,9 @@ export function Projects() {
               }}
             >
               <ImageSlideshow
-                images={slideImages[2]}
+                images={ventures[2].images}
                 interval={intervals[2]}
+                name={ventures[2].name}
                 className="h-full"
               />
             </motion.div>
@@ -357,8 +375,9 @@ export function Projects() {
               }}
             >
               <ImageSlideshow
-                images={slideImages[3]}
+                images={ventures[3].images}
                 interval={intervals[3]}
+                name={ventures[3].name}
                 className="h-full"
               />
             </motion.div>
