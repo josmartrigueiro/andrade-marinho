@@ -14,46 +14,36 @@ const PROGRESS_INTERVAL = 50;
 
 const RELEASES = [
   {
-    name: "Privilege\nPonta Negra",
-    description: "270 e 328 m² e Duplex Penthouse\n3 e 4 Suítes",
-    location: "Ponta Negra, Natal\nRN",
-    image: "/privilege/infinity-pool-view.jpg",
-    href: "#projeto",
+    name: "Edifício\nThemis",
+    description: "Residencial de Alto Padrão\nApartamentos Amplos",
+    location: "Lagoa Nova, Natal\nRN",
+    image: "/ventures/themis-1.jpg",
+    imagePosition: "center 50%",
+    href: "#fale-conosco",
   },
   {
-    name: "Residencial\nMar Azul",
-    description: "180 e 240 m²\n2 e 3 Suítes",
-    location: "Via Costeira, Natal\nRN",
-    image: "/privilege/ocean-lounge-terrace.jpg",
-    href: "#projeto",
-  },
-  {
-    name: "Vista\nParque",
-    description: "120 e 160 m²\n2 e 3 Suítes",
+    name: "Miguel\nCarrilho",
+    description: "Sofisticação e Conforto\nLocalização Privilegiada",
     location: "Tirol, Natal\nRN",
-    image: "/privilege/resort-pool-deck.jpg",
-    href: "#projeto",
+    image: "/ventures/miguel-carrilho-1.jpg",
+    imagePosition: "center 36%",
+    href: "#fale-conosco",
   },
   {
-    name: "Jardins\ndo Alto",
-    description: "200 e 280 m²\n3 e 4 Suítes",
-    location: "Petrópolis, Natal\nRN",
-    image: "/privilege/rooftop-social-club.jpg",
-    href: "#projeto",
+    name: "Residencial\nDunas",
+    description: "Design Moderno\nAcabamento Premium",
+    location: "Tirol, Natal\nRN",
+    image: "/ventures/dunas-1.jpg",
+    imagePosition: "center 30%",
+    href: "#fale-conosco",
   },
   {
-    name: "Terraço\nNobre",
-    description: "150 e 210 m²\n2 e 3 Suítes",
-    location: "Areia Preta, Natal\nRN",
-    image: "/privilege/gourmet-lounge.jpg",
-    href: "#projeto",
-  },
-  {
-    name: "Parque\nDas Dunas",
-    description: "160 e 220 m²\n3 Suítes",
-    location: "Capim Macio, Natal\nRN",
-    image: "/privilege/garden-courtyard.jpg",
-    href: "#projeto",
+    name: "Bosque\nTirol",
+    description: "Qualidade de Vida\nÁrea Nobre da Cidade",
+    location: "Tirol, Natal\nRN",
+    image: "/ventures/bosque-tirol-2.jpg",
+    imagePosition: "center 35%",
+    href: "#fale-conosco",
   },
 ];
 
@@ -148,11 +138,12 @@ export function Releases() {
                 alt={release.name.replace("\n", " ")}
                 fill
                 className="object-cover"
+                style={{ objectPosition: release.imagePosition }}
                 sizes="100vw"
                 priority={index === 0}
                 quality={90}
               />
-              <div className="absolute inset-0 bg-black/35" />
+              <div className="absolute inset-0 bg-primary/40" />
             </div>
           ))}
         </div>
