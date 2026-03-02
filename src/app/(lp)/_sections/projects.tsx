@@ -62,30 +62,66 @@ const ventures = [
   {
     name: "Themis",
     images: [
-      "/ventures/themis-1.jpg",
-      "/ventures/themis-4.jpg",
-      "/ventures/themis-7.jpg",
+      {
+        src: "/ventures/themis-1.jpg",
+        alt: "Fachada do Edifício Themis, residencial de alto padrão em Lagoa Nova, Natal RN",
+      },
+      {
+        src: "/ventures/themis-4.jpg",
+        alt: "Área de lazer do Edifício Themis com acabamento premium em Natal RN",
+      },
+      {
+        src: "/ventures/themis-7.jpg",
+        alt: "Detalhes arquitetônicos do Edifício Themis, construtora Andrade Marinho",
+      },
     ],
   },
   {
     name: "Miguel Carrilho",
     images: [
-      "/ventures/miguel-carrilho-2.jpg",
-      "/ventures/miguel-carrilho-3.jpg",
-      "/ventures/miguel-carrilho-5.jpg",
+      {
+        src: "/ventures/miguel-carrilho-2.jpg",
+        alt: "Fachada do empreendimento Miguel Carrilho em Tirol, Natal RN",
+      },
+      {
+        src: "/ventures/miguel-carrilho-3.jpg",
+        alt: "Área comum do Miguel Carrilho, apartamentos de alto padrão em Tirol",
+      },
+      {
+        src: "/ventures/miguel-carrilho-5.jpg",
+        alt: "Acabamento interno do empreendimento Miguel Carrilho em Natal RN",
+      },
     ],
   },
   {
     name: "Dunas",
     images: [
-      "/ventures/dunas-3.jpg",
-      "/ventures/dunas-1.jpg",
-      "/ventures/dunas-2.jpg",
+      {
+        src: "/ventures/dunas-3.jpg",
+        alt: "Vista externa do Residencial Dunas com design moderno em Tirol, Natal",
+      },
+      {
+        src: "/ventures/dunas-1.jpg",
+        alt: "Fachada do Residencial Dunas, empreendimento de alto padrão em Natal RN",
+      },
+      {
+        src: "/ventures/dunas-2.jpg",
+        alt: "Detalhes do Residencial Dunas com acabamento premium em Tirol, Natal",
+      },
     ],
   },
   {
     name: "Bosque Tirol",
-    images: ["/ventures/bosque-tirol-1.jpg", "/ventures/bosque-tirol-2.jpg"],
+    images: [
+      {
+        src: "/ventures/bosque-tirol-1.jpg",
+        alt: "Fachada do Bosque Tirol, empreendimento residencial em área nobre de Natal RN",
+      },
+      {
+        src: "/ventures/bosque-tirol-2.jpg",
+        alt: "Vista do Bosque Tirol, qualidade de vida em Tirol, Natal RN",
+      },
+    ],
   },
 ];
 
@@ -97,7 +133,7 @@ function ImageSlideshow({
   name,
   className,
 }: {
-  images: string[];
+  images: { src: string; alt: string }[];
   interval: number;
   name: string;
   className?: string;
@@ -117,17 +153,18 @@ function ImageSlideshow({
       <div
         className="absolute inset-0 scale-110"
         style={{
-          backgroundImage: `url(${images[0]})`,
+          backgroundImage: `url(${images[0].src})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           filter: "blur(20px)",
         }}
+        aria-hidden
       />
 
       <div className="absolute inset-0">
         <Image
-          src={images[0]}
-          alt={`Empreendimento ${name} - Andrade Marinho`}
+          src={images[0].src}
+          alt={images[0].alt}
           fill
           className="object-cover"
           sizes="(max-width: 768px) 100vw, 50vw"
@@ -135,9 +172,9 @@ function ImageSlideshow({
         />
       </div>
 
-      {images.slice(1).map((src, index) => (
+      {images.slice(1).map((image, index) => (
         <motion.div
-          key={src}
+          key={image.src}
           className="absolute inset-0"
           initial={{ opacity: 0 }}
           animate={{
@@ -149,11 +186,12 @@ function ImageSlideshow({
           }}
         >
           <Image
-            src={src}
-            alt={`Empreendimento ${name} - Andrade Marinho`}
+            src={image.src}
+            alt={image.alt}
             fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 50vw"
+            loading="lazy"
           />
         </motion.div>
       ))}

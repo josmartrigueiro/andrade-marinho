@@ -18,6 +18,8 @@ const RELEASES = [
     description: "Residencial de Alto Padrão\nApartamentos Amplos",
     location: "Lagoa Nova, Natal\nRN",
     image: "/ventures/themis-1.jpg",
+    imageAlt:
+      "Fachada do Edifício Themis, residencial de alto padrão em Lagoa Nova, Natal RN",
     imagePosition: "center 50%",
     href: "#fale-conosco",
   },
@@ -26,6 +28,8 @@ const RELEASES = [
     description: "Sofisticação e Conforto\nLocalização Privilegiada",
     location: "Tirol, Natal\nRN",
     image: "/ventures/miguel-carrilho-1.jpg",
+    imageAlt:
+      "Fachada do empreendimento Miguel Carrilho, apartamentos de sofisticação em Tirol, Natal RN",
     imagePosition: "center 36%",
     href: "#fale-conosco",
   },
@@ -34,6 +38,8 @@ const RELEASES = [
     description: "Design Moderno\nAcabamento Premium",
     location: "Tirol, Natal\nRN",
     image: "/ventures/dunas-1.jpg",
+    imageAlt:
+      "Vista do Residencial Dunas com design moderno e acabamento premium em Tirol, Natal RN",
     imagePosition: "center 30%",
     href: "#fale-conosco",
   },
@@ -42,6 +48,8 @@ const RELEASES = [
     description: "Qualidade de Vida\nÁrea Nobre da Cidade",
     location: "Tirol, Natal\nRN",
     image: "/ventures/bosque-tirol-2.jpg",
+    imageAlt:
+      "Bosque Tirol, empreendimento residencial em área nobre de Tirol, Natal RN",
     imagePosition: "center 35%",
     href: "#fale-conosco",
   },
@@ -135,7 +143,7 @@ export function Releases() {
             >
               <Image
                 src={release.image}
-                alt={release.name.replace("\n", " ")}
+                alt={release.imageAlt}
                 fill
                 className="object-cover"
                 style={{ objectPosition: release.imagePosition }}
