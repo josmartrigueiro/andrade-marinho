@@ -7,6 +7,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/portal-do-corretor",
   },
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function PortalDoCorretorLayout({

@@ -4,15 +4,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: "https://andrademarinho.com.br",
-      lastModified: new Date(),
+      lastModified: new Date("2026-03-01"),
       changeFrequency: "monthly",
       priority: 1,
     },
     {
       url: "https://andrademarinho.com.br/portal-do-corretor",
-      lastModified: new Date(),
+      lastModified: new Date("2026-02-01"),
       changeFrequency: "yearly",
-      priority: 0.5,
+      priority: 0.3,
     },
   ];
 }
