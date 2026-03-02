@@ -17,29 +17,29 @@ const FADE_DURATION_MS = 1200;
 
 const HERO_SLIDES = [
   {
-    image: "/privilege/street-frontage.jpg",
-    alt: "Fachada do empreendimento Andrade Marinho.",
-    projectName: "Privilege Ponta Negra",
+    image: "/ventures/miguel-carrilho-1.jpg",
+    alt: "Miguel Carrilho - Sofisticação e Conforto.",
+    projectName: "Miguel Carrilho",
+    objectPosition: "center 90%",
   },
   {
-    image: "/privilege/front-walkway.jpg",
-    alt: "Entrada e passeio do empreendimento.",
-    projectName: "Residencial Mar Azul",
+    image: "/ventures/themis-1.jpg",
+    alt: "Edifício Themis - Residencial de Alto Padrão.",
+    projectName: "Edifício Themis",
+    imageScale: 1.6,
   },
   {
-    image: "/privilege/rooftop-social-club.jpg",
-    alt: "Área de convivência no topo do edifício.",
-    projectName: "Vista Parque",
+    image: "/ventures/dunas-1.jpg",
+    alt: "Residencial Dunas - Design Moderno.",
+    projectName: "Residencial Dunas",
+    objectPosition: "58% -40%",
+    imageScale: 1.6,
   },
   {
-    image: "/privilege/garden-courtyard.jpg",
-    alt: "Jardim e área comum do empreendimento.",
-    projectName: "Jardins do Alto",
-  },
-  {
-    image: "/privilege/infinity-pool-view.jpg",
-    alt: "Piscina e vista do empreendimento.",
-    projectName: "Terraço Nobre",
+    image: "/ventures/bosque-tirol-1.jpg",
+    alt: "Bosque Tirol - Qualidade de Vida.",
+    projectName: "Bosque Tirol",
+    objectPosition: "58% -80%",
   },
 ];
 
@@ -271,8 +271,8 @@ export function Hero() {
                 delay: HERO_BASE_DELAY + 0.8,
               }}
             >
-              Empreendimentos que unem solidez construtiva, localização
-              estratégica e padrão elevado de acabamento.
+              Empreendimentos em Natal, RN que unem solidez construtiva,
+              localização estratégica e padrão elevado de acabamento.
             </motion.p>
 
             <motion.div
@@ -311,16 +311,25 @@ export function Hero() {
             initial={
               prefersReducedMotion
                 ? {}
-                : { clipPath: "inset(50% -80px 50% -80px)", filter: "blur(16px)" }
+                : {
+                    clipPath: "inset(50% -80px 50% -80px)",
+                    filter: "blur(16px)",
+                  }
             }
             animate={
               !animationReady
                 ? prefersReducedMotion
                   ? { opacity: 0 }
-                  : { clipPath: "inset(50% -80px 50% -80px)", filter: "blur(16px)" }
+                  : {
+                      clipPath: "inset(50% -80px 50% -80px)",
+                      filter: "blur(16px)",
+                    }
                 : prefersReducedMotion
                   ? { opacity: 1 }
-                  : { clipPath: "inset(-80px -80px -80px -80px)", filter: "blur(0px)" }
+                  : {
+                      clipPath: "inset(-80px -80px -80px -80px)",
+                      filter: "blur(0px)",
+                    }
             }
             transition={{
               clipPath: {
@@ -372,15 +381,30 @@ export function Hero() {
                             : { y: imageParallaxY }
                         }
                       >
-                        <Image
-                          src={slide.image}
-                          alt={index === selectedIndex ? slide.alt : ""}
-                          fill
-                          priority={index === 0}
-                          quality={90}
-                          className="object-cover object-center saturate-[0.96] contrast-[1.02]"
-                          sizes="(max-width: 1023px) 100vw, 44vw"
-                        />
+                        <div
+                          className="absolute inset-0"
+                          style={{
+                            ...("imageScale" in slide && {
+                              transform: `scale(${slide.imageScale})`,
+                            }),
+                          }}
+                        >
+                          <Image
+                            src={slide.image}
+                            alt={index === selectedIndex ? slide.alt : ""}
+                            fill
+                            priority={index === 0}
+                            quality={90}
+                            className="object-cover saturate-[0.96] contrast-[1.02]"
+                            style={{
+                              objectPosition:
+                                "objectPosition" in slide
+                                  ? slide.objectPosition
+                                  : "center",
+                            }}
+                            sizes="(max-width: 1023px) 100vw, 44vw"
+                          />
+                        </div>
                       </motion.div>
                     </motion.div>
                   ))}
