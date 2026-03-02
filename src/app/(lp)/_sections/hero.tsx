@@ -227,7 +227,7 @@ export function Hero() {
                     segmentTransition={{ duration: 0.45, ease: easeOutCubic }}
                     className="block sm:whitespace-nowrap"
                   >
-                    Construa seu
+                    Apartamentos de
                   </TextEffect>
                   <TextEffect
                     per="word"
@@ -239,7 +239,7 @@ export function Hero() {
                     segmentTransition={{ duration: 0.45, ease: easeOutCubic }}
                     className="block mt-1 sm:whitespace-nowrap"
                   >
-                    futuro com
+                    Alto Padrão
                   </TextEffect>
                   <TextEffect
                     per="word"
@@ -251,7 +251,7 @@ export function Hero() {
                     segmentTransition={{ duration: 0.45, ease: easeOutCubic }}
                     className="block mt-1 sm:whitespace-nowrap"
                   >
-                    Solidez.
+                    em Natal, RN.
                   </TextEffect>
                 </>
               )}
@@ -394,6 +394,7 @@ export function Hero() {
                             alt={index === selectedIndex ? slide.alt : ""}
                             fill
                             priority={index === 0}
+                            loading={index === 0 ? "eager" : "lazy"}
                             quality={90}
                             className="object-cover saturate-[0.96] contrast-[1.02]"
                             style={{
