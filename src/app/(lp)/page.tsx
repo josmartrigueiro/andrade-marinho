@@ -11,9 +11,41 @@ import { Stats } from "./_sections/stats";
 import { Contact } from "./_sections/contact";
 import { ContactUs } from "./_sections/contact-us";
 
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": ["Organization", "LocalBusiness"],
+  name: "Andrade Marinho Empreendimentos",
+  url: "https://andrademarinho.com.br",
+  logo: "https://andrademarinho.com.br/logotype-blue.svg",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Natal",
+    addressRegion: "RN",
+    addressCountry: "BR",
+  },
+  areaServed: "Natal, RN",
+  description:
+    "Construtora de empreendimentos residenciais de alto padrão em Natal, RN.",
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Andrade Marinho",
+  url: "https://andrademarinho.com.br",
+};
+
 export default function Home() {
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+      />
       {/* ===============================
        * HERO
        * =============================== */}
