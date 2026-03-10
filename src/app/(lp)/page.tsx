@@ -47,8 +47,7 @@ const websiteJsonLd = {
     "@type": "SearchAction",
     target: {
       "@type": "EntryPoint",
-      urlTemplate:
-        "https://andrademarinho.com.br/?q={search_term_string}",
+      urlTemplate: "https://andrademarinho.com.br/?q={search_term_string}",
     },
     "query-input": "required name=search_term_string",
   },
@@ -95,8 +94,7 @@ const propertiesJsonLd = {
           neighborhood: "Tirol",
           addressCountry: "BR",
         },
-        image:
-          "https://andrademarinho.com.br/ventures/miguel-carrilho-1.jpg",
+        image: "https://andrademarinho.com.br/ventures/miguel-carrilho-1.jpg",
         url: "https://andrademarinho.com.br/#fale-conosco",
       },
     },
@@ -106,8 +104,7 @@ const propertiesJsonLd = {
       item: {
         "@type": "Residence",
         name: "Residencial Dunas",
-        description:
-          "Design moderno e acabamento premium em Tirol, Natal, RN.",
+        description: "Design moderno e acabamento premium em Tirol, Natal, RN.",
         address: {
           "@type": "PostalAddress",
           addressLocality: "Natal",
@@ -227,6 +224,9 @@ export default function Home() {
          * ART BOARD GRID
          * =============================== */}
         <div className="relative container py-0! md:py-24! px-4 lg:px-12">
+          <span className="mb-6 block text-sm font-medium uppercase tracking-[0.2em] text-primary-light">
+            Lançamento atual: Privilege Ponta Negra
+          </span>
           <ArtBoardGrid />
         </div>
 
