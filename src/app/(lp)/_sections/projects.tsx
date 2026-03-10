@@ -60,32 +60,64 @@ const features = [
 
 const ventures = [
   {
-    name: "Themis",
+    name: "Miguel Carrilho",
     images: [
-      "/ventures/themis-1.jpg",
-      "/ventures/themis-4.jpg",
-      "/ventures/themis-7.jpg",
+      {
+        src: "/ventures/miguel-carrilho-pool-16-9.png",
+        alt: "Área de lazer com piscina, espreguiçadeiras e deck de madeira do Edifício Miguel Carrilho em Natal RN",
+      },
+      {
+        src: "/ventures/miguel-carrilho-expend-16-9.png",
+        alt: "Vista aérea do Edifício Miguel Carrilho ao pôr do sol com o Rio Potengi ao fundo em Natal RN",
+      },
+      {
+        src: "/ventures/miguel-carrilho-close-16-9.png",
+        alt: "Detalhe das varandas e fachada envidraçada do Edifício Miguel Carrilho com vista para o rio",
+      },
     ],
   },
   {
-    name: "Miguel Carrilho",
+    name: "Themis",
     images: [
-      "/ventures/miguel-carrilho-2.jpg",
-      "/ventures/miguel-carrilho-3.jpg",
-      "/ventures/miguel-carrilho-5.jpg",
+      {
+        src: "/ventures/themis-beautiful-sky-3-4.png",
+        alt: "Vista aérea do Edifício Themis ao entardecer com panorama da cidade de Natal ao fundo",
+      },
+      {
+        src: "/ventures/themis-details-3-4.png",
+        alt: "Detalhe da fachada envidraçada do Edifício Themis com reflexos da cidade de Natal",
+      },
+      {
+        src: "/ventures/themis-take-open-3-4.png",
+        alt: "Vista aérea aberta do Edifício Themis inserido no bairro Tirol em Natal RN",
+      },
     ],
   },
   {
     name: "Dunas",
     images: [
-      "/ventures/dunas-3.jpg",
-      "/ventures/dunas-1.jpg",
-      "/ventures/dunas-2.jpg",
+      {
+        src: "/ventures/dunas-close-3-4.png",
+        alt: "Fachada do Residencial Dunas com varandas amplas e acabamento em tons claros em Natal RN",
+      },
+      {
+        src: "/ventures/dunas-open-4-3.png",
+        alt: "Vista aérea do Residencial Dunas entre edifícios no bairro Tirol em Natal RN",
+      },
     ],
   },
   {
     name: "Bosque Tirol",
-    images: ["/ventures/bosque-tirol-1.jpg", "/ventures/bosque-tirol-2.jpg"],
+    images: [
+      {
+        src: "/ventures/bosque-tirol-center-3-4.png",
+        alt: "Fachada cilíndrica do Edifício Bosque Tirol com varandas curvas e design arrojado em Natal RN",
+      },
+      {
+        src: "/ventures/bosque-tirol-close-4-3.png",
+        alt: "Topo do Edifício Bosque Tirol com varandas panorâmicas e vista para o skyline de Natal",
+      },
+    ],
   },
 ];
 
@@ -97,7 +129,7 @@ function ImageSlideshow({
   name,
   className,
 }: {
-  images: string[];
+  images: { src: string; alt: string }[];
   interval: number;
   name: string;
   className?: string;
@@ -117,17 +149,18 @@ function ImageSlideshow({
       <div
         className="absolute inset-0 scale-110"
         style={{
-          backgroundImage: `url(${images[0]})`,
+          backgroundImage: `url(${images[0].src})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           filter: "blur(20px)",
         }}
+        aria-hidden
       />
 
       <div className="absolute inset-0">
         <Image
-          src={images[0]}
-          alt={`Empreendimento ${name} - Andrade Marinho`}
+          src={images[0].src}
+          alt={images[0].alt}
           fill
           className="object-cover"
           sizes="(max-width: 768px) 100vw, 50vw"
@@ -135,9 +168,9 @@ function ImageSlideshow({
         />
       </div>
 
-      {images.slice(1).map((src, index) => (
+      {images.slice(1).map((image, index) => (
         <motion.div
-          key={src}
+          key={image.src}
           className="absolute inset-0"
           initial={{ opacity: 0 }}
           animate={{
@@ -149,11 +182,12 @@ function ImageSlideshow({
           }}
         >
           <Image
-            src={src}
-            alt={`Empreendimento ${name} - Andrade Marinho`}
+            src={image.src}
+            alt={image.alt}
             fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 50vw"
+            loading="lazy"
           />
         </motion.div>
       ))}

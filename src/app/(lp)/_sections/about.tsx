@@ -58,6 +58,7 @@ export function About() {
   });
 
   const imageY = useTransform(scrollYProgress, [0, 1], [-250, 250]);
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1.3, 1]);
 
   return (
     <section ref={sectionRef} id="about" className="relative w-full bg-primary">
@@ -69,11 +70,11 @@ export function About() {
         variants={imageVariants}
       >
         <motion.div
-          className="absolute inset-0 h-[120%] -top-[10%]"
-          style={{ y: imageY }}
+          className="absolute inset-0 top-[20%]"
+          style={{ y: imageY, scale: imageScale }}
         >
           <Image
-            src="/ventures/miguel-carrilho-1.jpg"
+            src="/ventures/miguel-carrilho-3-4.png"
             alt="Fachada do empreendimento Andrade Marinho"
             fill
             className="object-cover"

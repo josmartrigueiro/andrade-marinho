@@ -66,9 +66,9 @@ export function Presentation() {
             variants={variants}
             transition={transition}
           >
-            <h3 className="text-sm font-medium uppercase tracking-[0.2em] text-primary-light">
-              SOBRE A ANDRADE MARINHO
-            </h3>
+            <h2 className="text-sm font-medium uppercase tracking-[0.2em] text-primary-light">
+              Sobre a Andrade Marinho
+            </h2>
           </motion.div>
 
           <motion.div
@@ -81,14 +81,14 @@ export function Presentation() {
             <motion.div variants={variants} transition={transition}>
               <Image
                 src="/logo-white.png"
-                alt="Andrade Marinho"
+                alt="Logotipo Andrade Marinho Empreendimentos"
                 width={180}
                 height={180}
                 className="h-auto w-30 md:w-37.5 lg:w-45"
               />
             </motion.div>
 
-            <motion.h2
+            <motion.p
               className="mt-6 text-white text-xl font-medium md:mt-8 md:text-3xl lg:text-4xl"
               variants={variants}
               transition={transition}
@@ -97,7 +97,7 @@ export function Presentation() {
               nasce da experiência de um grupo consolidado no setor imobiliário,
               trazendo para a cidade projetos que unem técnica, responsabilidade
               e visão de longo prazo.
-            </motion.h2>
+            </motion.p>
 
             <motion.div
               className="mt-8 w-full max-w-227 border-t border-primary-light/50 md:mt-10"
