@@ -17,29 +17,27 @@ const FADE_DURATION_MS = 1200;
 
 const HERO_SLIDES = [
   {
-    image: "/ventures/miguel-carrilho-1.jpg",
+    image: "/ventures/miguel-carrilho-3-4.png",
     alt: "Miguel Carrilho - Sofisticação e Conforto.",
     projectName: "Miguel Carrilho",
     objectPosition: "center 90%",
   },
   {
-    image: "/ventures/themis-1.jpg",
+    image: "/ventures/themis-hero.png",
     alt: "Edifício Themis - Residencial de Alto Padrão.",
     projectName: "Edifício Themis",
-    imageScale: 1.6,
+    imageScale: 1.1,
   },
   {
-    image: "/ventures/dunas-1.jpg",
+    image: "/ventures/dunas-3-4.png",
     alt: "Residencial Dunas - Design Moderno.",
     projectName: "Residencial Dunas",
     objectPosition: "58% -40%",
-    imageScale: 1.6,
   },
   {
-    image: "/ventures/bosque-tirol-1.jpg",
+    image: "/ventures/bosque-tirol-3-4.png",
     alt: "Bosque Tirol - Qualidade de Vida.",
     projectName: "Bosque Tirol",
-    objectPosition: "58% -80%",
   },
 ];
 
@@ -97,7 +95,6 @@ export function Hero() {
   }, []);
 
   useEffect(() => {
-    // No autoplay / progress animation on mobile
     if (isMobile) {
       if (intervalRef.current) clearInterval(intervalRef.current);
       if (autoplayRef.current) clearInterval(autoplayRef.current);
@@ -118,7 +115,6 @@ export function Hero() {
   }, [startProgress, isMobile]);
 
   const scrollPrev = useCallback(() => {
-    // No progress animation reset on mobile
     if (isMobile) {
       setSelectedIndex((i) => (i - 1 + slideCount) % slideCount);
       return;
@@ -227,7 +223,7 @@ export function Hero() {
                     segmentTransition={{ duration: 0.45, ease: easeOutCubic }}
                     className="block sm:whitespace-nowrap"
                   >
-                    Apartamentos de
+                    Construa seu
                   </TextEffect>
                   <TextEffect
                     per="word"
@@ -239,7 +235,7 @@ export function Hero() {
                     segmentTransition={{ duration: 0.45, ease: easeOutCubic }}
                     className="block mt-1 sm:whitespace-nowrap"
                   >
-                    Alto Padrão
+                    futuro com
                   </TextEffect>
                   <TextEffect
                     per="word"
@@ -251,7 +247,7 @@ export function Hero() {
                     segmentTransition={{ duration: 0.45, ease: easeOutCubic }}
                     className="block mt-1 sm:whitespace-nowrap"
                   >
-                    em Natal, RN.
+                    Solidez.
                   </TextEffect>
                 </>
               )}
