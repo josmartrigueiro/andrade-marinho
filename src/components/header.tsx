@@ -159,7 +159,12 @@ export function Header() {
 
   const textColor = isMenuOpen ? "text-primary-foreground" : "text-foreground";
   const barColor = isMenuOpen ? "bg-primary-foreground" : "bg-foreground";
-  const borderColor = isTop && !isMenuOpen ? "border-transparent" : isMenuOpen ? "border-primary-foreground/20" : "border-border";
+  const borderColor =
+    isTop && !isMenuOpen
+      ? "border-transparent"
+      : isMenuOpen
+        ? "border-primary-foreground/20"
+        : "border-border";
   const logoSrc = isMenuOpen ? "/logo-white.png" : "/logo-blue.png";
 
   return (
@@ -198,7 +203,7 @@ export function Header() {
                       : "opacity-0 pointer-events-none"
                   }`}
                 >
-                  <Link href="#encontre-seu" className={NAV_LINK_CLASS}>
+                  <Link href="#releases" className={NAV_LINK_CLASS}>
                     EMPREENDIMENTOS
                   </Link>
                   <Link href="/portal-do-corretor" className={NAV_LINK_CLASS}>
@@ -486,12 +491,12 @@ const navigationItemsDesktop = [
     href: "#home",
   },
   {
-    name: "DEPOIMENTOS",
-    href: "#contato",
+    name: "NOSSA BASE",
+    href: "#services",
   },
   {
     name: "EMPREENDIMENTOS",
-    href: "#projeto",
+    href: "#releases",
   },
 ];
 

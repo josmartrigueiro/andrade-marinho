@@ -25,13 +25,13 @@ const HERO_SLIDES = [
   {
     image: "/ventures/themis-hero.png",
     alt: "Edifício Themis - Residencial de Alto Padrão.",
-    projectName: "Edifício Themis",
+    projectName: "Themis Tower",
     imageScale: 1.1,
   },
   {
     image: "/ventures/dunas-3-4.png",
-    alt: "Residencial Dunas - Design Moderno.",
-    projectName: "Residencial Dunas",
+    alt: "Residencial Dunas Tirol - Design Moderno.",
+    projectName: "Dunas Tirol",
     objectPosition: "58% -40%",
   },
   {
@@ -295,7 +295,7 @@ export function Hero() {
                   />
                 )}
               >
-                Ver empreendimentos
+                Falar com um consultor
               </Button>
             </motion.div>
           </div>

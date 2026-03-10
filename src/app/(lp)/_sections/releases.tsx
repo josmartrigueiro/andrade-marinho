@@ -14,12 +14,12 @@ const PROGRESS_INTERVAL = 50;
 
 const RELEASES = [
   {
-    name: "Edifício\nThemis",
-    description: "Residencial de Alto Padrão\nApartamentos Amplos",
+    name: "Themis\nTower",
+    description: "Prédio Comercial\n Alto Padrão",
     location: "Lagoa Nova, Natal\nRN",
     image: "/ventures/themis-16-9.png",
     imageAlt:
-      "Fachada do Edifício Themis, residencial de alto padrão em Lagoa Nova, Natal RN",
+      "Fachada do Themis Tower, prédio comercial de alto padrão em Lagoa Nova, Natal RN",
     imagePosition: "center 50%",
     href: "#fale-conosco",
   },
@@ -34,12 +34,12 @@ const RELEASES = [
     href: "#fale-conosco",
   },
   {
-    name: "Residencial\nDunas",
+    name: "Dunas\nTirol",
     description: "Design Moderno\nAcabamento Premium",
     location: "Tirol, Natal\nRN",
     image: "/ventures/dunas-16-9.png",
     imageAlt:
-      "Vista do Residencial Dunas com design moderno e acabamento premium em Tirol, Natal RN",
+      "Vista do Dunas Tirol com design moderno e acabamento premium em Tirol, Natal RN",
     imagePosition: "center 30%",
     href: "#fale-conosco",
   },
@@ -157,18 +157,14 @@ export function Releases() {
         </div>
       </div>
 
-      {/* Content overlay */}
       <div className="relative z-10 flex flex-col h-full">
-        {/* Top badge */}
         <div className="flex justify-center pt-24 md:pt-32">
           <span className="border border-white/60 px-6 py-2 text-xs tracking-[0.25em] uppercase text-white">
-            Lançamentos
+            Nossas obras
           </span>
         </div>
 
-        {/* Center content */}
         <div className="flex-1 flex items-center justify-center relative">
-          {/* Left description */}
           <div className="hidden md:block absolute left-16 lg:left-24">
             <AnimatePresence mode="wait">
               <motion.p
