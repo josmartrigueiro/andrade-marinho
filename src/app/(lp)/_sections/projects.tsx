@@ -63,10 +63,6 @@ const ventures = [
     name: "Miguel Carrilho",
     images: [
       {
-        src: "/ventures/miguel-carrilho-pool-16-9.png",
-        alt: "Área de lazer com piscina, espreguiçadeiras e deck de madeira do Edifício Miguel Carrilho em Natal RN",
-      },
-      {
         src: "/ventures/miguel-carrilho-expend-16-9.png",
         alt: "Vista aérea do Edifício Miguel Carrilho ao pôr do sol com o Rio Potengi ao fundo em Natal RN",
       },
@@ -77,7 +73,7 @@ const ventures = [
     ],
   },
   {
-    name: "Themis",
+    name: "Themis Tower",
     images: [
       {
         src: "/ventures/themis-beautiful-sky-3-4.png",
@@ -94,15 +90,15 @@ const ventures = [
     ],
   },
   {
-    name: "Dunas",
+    name: "Dunas Tirol",
     images: [
       {
         src: "/ventures/dunas-close-3-4.png",
-        alt: "Fachada do Residencial Dunas com varandas amplas e acabamento em tons claros em Natal RN",
+        alt: "Fachada do Dunas Tirol com varandas amplas e acabamento em tons claros em Natal RN",
       },
       {
         src: "/ventures/dunas-open-4-3.png",
-        alt: "Vista aérea do Residencial Dunas entre edifícios no bairro Tirol em Natal RN",
+        alt: "Vista aérea do Dunas Tirol entre edifícios no bairro Tirol em Natal RN",
       },
     ],
   },

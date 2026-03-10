@@ -32,24 +32,23 @@ const itemVariants: Variants = {
 
 const NAV_LINKS = [
   { label: "Inicio", href: "#home" },
-  { label: "Projeto", href: "#projeto" },
-  { label: "Galeria", href: "#galeria" },
-  { label: "Ficha Tecnica", href: "#ficha-tecnica" },
+  { label: "Sobre a Andrade", href: "#presentation" },
+  { label: "Nossa entregas", href: "#projects" },
   { label: "Contato", href: "#contato" },
 ];
 
 const CONTACT_INFO = {
   phone: {
-    display: "(84) 99999-9999",
-    href: "tel:+5584999999999",
+    display: "(84) 98833-0213",
+    href: "tel:+5584988330213",
   },
   email: {
-    display: "contato@andrademarinho.com.br",
+    display: "luciana@andrademarinho.com.br",
     href: "mailto:contato@andrademarinho.com.br",
   },
   instagram: {
-    display: "@andrademarinho",
-    href: "https://instagram.com/andrademarinho",
+    display: "@andrademarinhoconstrucoes",
+    href: "https://instagram.com/andrademarinhoconstrucoes",
   },
 };
 
@@ -67,7 +66,6 @@ export function Footer() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
         >
-          {/* Coluna 1 — Brand */}
           <motion.div className="flex flex-col gap-6" variants={itemVariants}>
             <Image
               src="/logo-blue.png"
@@ -78,14 +76,13 @@ export function Footer() {
             />
 
             <p className="text-sm text-muted-foreground">
-              CNPJ: 00.000.000/0001-00
+              CNPJ: 04.058.268/0001-35
             </p>
           </motion.div>
 
-          {/* Coluna 2 — Navegacao */}
           <motion.div className="flex flex-col gap-5" variants={itemVariants}>
             <h3 className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
-              Navegacao
+              Navegação
             </h3>
 
             <nav className="flex flex-col gap-3">
@@ -97,7 +94,6 @@ export function Footer() {
             </nav>
           </motion.div>
 
-          {/* Coluna 3 — Contato */}
           <motion.div className="flex flex-col gap-5" variants={itemVariants}>
             <h3 className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
               Contato
@@ -139,7 +135,6 @@ export function Footer() {
             <a href="https://" className="text-gray-800 underline">
               Josmar Trigueiro
             </a>{" "}
-            ʕ•́ᴥ•̀ʔっ
           </span>
         </motion.div>
       </div>
