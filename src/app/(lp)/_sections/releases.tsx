@@ -17,7 +17,7 @@ const RELEASES = [
     name: "Edifício\nThemis",
     description: "Residencial de Alto Padrão\nApartamentos Amplos",
     location: "Lagoa Nova, Natal\nRN",
-    image: "/ventures/themis-1.jpg",
+    image: "/ventures/themis-16-9.png",
     imageAlt:
       "Fachada do Edifício Themis, residencial de alto padrão em Lagoa Nova, Natal RN",
     imagePosition: "center 50%",
@@ -27,7 +27,7 @@ const RELEASES = [
     name: "Miguel\nCarrilho",
     description: "Sofisticação e Conforto\nLocalização Privilegiada",
     location: "Tirol, Natal\nRN",
-    image: "/ventures/miguel-carrilho-1.jpg",
+    image: "/ventures/miguel-carrilho-16-9.png",
     imageAlt:
       "Fachada do empreendimento Miguel Carrilho, apartamentos de sofisticação em Tirol, Natal RN",
     imagePosition: "center 36%",
@@ -37,7 +37,7 @@ const RELEASES = [
     name: "Residencial\nDunas",
     description: "Design Moderno\nAcabamento Premium",
     location: "Tirol, Natal\nRN",
-    image: "/ventures/dunas-1.jpg",
+    image: "/ventures/dunas-16-9.png",
     imageAlt:
       "Vista do Residencial Dunas com design moderno e acabamento premium em Tirol, Natal RN",
     imagePosition: "center 30%",
@@ -47,7 +47,7 @@ const RELEASES = [
     name: "Bosque\nTirol",
     description: "Qualidade de Vida\nÁrea Nobre da Cidade",
     location: "Tirol, Natal\nRN",
-    image: "/ventures/bosque-tirol-2.jpg",
+    image: "/ventures/bosque-tirol-16-9.png",
     imageAlt:
       "Bosque Tirol, empreendimento residencial em área nobre de Tirol, Natal RN",
     imagePosition: "center 35%",
