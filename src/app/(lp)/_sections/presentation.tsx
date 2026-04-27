@@ -93,10 +93,11 @@ export function Presentation() {
               variants={variants}
               transition={transition}
             >
-              Credibilidade que se constrói todos os dias. A Andrade Marinho
-              nasce da experiência de um grupo consolidado no setor imobiliário,
-              trazendo para a cidade projetos que unem técnica, responsabilidade
-              e visão de longo prazo.
+              A Andrade Marinho Empreendimentos integra o Grupo Andrade Marinho,
+              com mais de 50 anos de atuação empresarial. Presente em cidades
+              como Natal, João Pessoa e Campina Grande, a empresa desenvolve
+              empreendimentos imobiliários pautados por qualidade construtiva,
+              valorização patrimonial e confiança nas relações.
             </motion.p>
 
             <motion.div
@@ -110,11 +111,14 @@ export function Presentation() {
               variants={variants}
               transition={transition}
             >
-              Na Andrade Marinho, não entregamos apenas metros quadrados;
-              criamos ambientes que contam histórias. Nossa abordagem humana,
-              acessível e sofisticada redefine o morar com elegância funcional.
-              Explore a sensibilidade minimalista e contemporânea que expressa a
-              essência da Andrade Marinho Empreendimentos.
+              Ao longo de sua trajetória, a Andrade Marinho se destacou por
+              entregar projetos diferenciados, com alto padrão de acabamento,
+              valorização consistente e, muitas vezes, antecipação dos prazos de
+              entrega. A credibilidade construída ao longo dos anos se reflete
+              na fidelidade de seus clientes e no portfólio de empreendimentos
+              já entregues, reforçando o compromisso da empresa com
+              responsabilidade, transparência e visão de longo prazo no mercado
+              imobiliário.
             </motion.p>
           </motion.div>
         </motion.div>

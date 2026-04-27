@@ -267,8 +267,8 @@ export function Hero() {
                 delay: HERO_BASE_DELAY + 0.8,
               }}
             >
-              Empreendimentos em Natal, RN que unem solidez construtiva,
-              localização estratégica e padrão elevado de acabamento.
+              Empreendimentos que unem solidez construtiva, localização
+              estratégica e padrão elevado de acabamento.
             </motion.p>
 
             <motion.div
