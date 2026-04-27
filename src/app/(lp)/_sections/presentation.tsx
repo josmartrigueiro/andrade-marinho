@@ -94,7 +94,7 @@ export function Presentation() {
               transition={transition}
             >
               A Andrade Marinho Empreendimentos integra o Grupo Andrade Marinho,
-              com mais de 40 anos de atuação empresarial. Presente em cidades
+              com mais de 50 anos de atuação empresarial. Presente em cidades
               como Natal, João Pessoa e Campina Grande, a empresa desenvolve
               empreendimentos imobiliários pautados por qualidade construtiva,
               valorização patrimonial e confiança nas relações.

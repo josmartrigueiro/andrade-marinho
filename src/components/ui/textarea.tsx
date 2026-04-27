@@ -4,8 +4,7 @@ import { forwardRef, useId } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
-interface TextareaProps
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label: string;
   error?: string;
   maxLength?: number;
@@ -17,7 +16,15 @@ const lineClasses =
 
 const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   (
-    { label, error, className, id: externalId, maxLength, currentLength, ...props },
+    {
+      label,
+      error,
+      className,
+      id: externalId,
+      maxLength,
+      currentLength,
+      ...props
+    },
     ref,
   ) => {
     const autoId = useId();

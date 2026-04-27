@@ -22,6 +22,7 @@ const RELEASES = [
       "Fachada do Themis Tower, prédio comercial de alto padrão em Lagoa Nova, Natal RN",
     imagePosition: "center 50%",
     href: "#fale-conosco",
+    status: "Entregue",
   },
   {
     name: "Miguel\nCarrilho",
@@ -32,6 +33,7 @@ const RELEASES = [
       "Fachada do empreendimento Miguel Carrilho, apartamentos de sofisticação em Tirol, Natal RN",
     imagePosition: "center 36%",
     href: "#fale-conosco",
+    status: "Entregue",
   },
   {
     name: "Dunas\nTirol",
@@ -42,6 +44,7 @@ const RELEASES = [
       "Vista do Dunas Tirol com design moderno e acabamento premium em Tirol, Natal RN",
     imagePosition: "center 30%",
     href: "#fale-conosco",
+    status: "Entregue",
   },
   {
     name: "Bosque\nTirol",
@@ -52,6 +55,18 @@ const RELEASES = [
       "Bosque Tirol, empreendimento residencial em área nobre de Tirol, Natal RN",
     imagePosition: "center 35%",
     href: "#fale-conosco",
+    status: "Entregue",
+  },
+  {
+    name: "Privilege",
+    description: "Lazer Completo\nDesign Contemporâneo",
+    location: "Natal\nRN",
+    image: "/privilege/street-frontage.jpg",
+    imageAlt:
+      "Fachada do empreendimento Privilege com design contemporâneo e paisagismo em Natal RN",
+    imagePosition: "center 50%",
+    href: "#fale-conosco",
+    status: "Em construção",
   },
 ];
 
@@ -159,9 +174,18 @@ export function Releases() {
 
       <div className="relative z-10 flex flex-col h-full">
         <div className="flex justify-center pt-24 md:pt-32">
-          <span className="border border-white/60 px-6 py-2 text-xs tracking-[0.25em] uppercase text-white">
-            Nossas obras
-          </span>
+          <AnimatePresence mode="wait">
+            <motion.span
+              key={`status-${selectedIndex}`}
+              className="border border-white/60 px-6 py-2 text-xs tracking-[0.25em] uppercase text-white"
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+            >
+              {currentRelease.status}
+            </motion.span>
+          </AnimatePresence>
         </div>
 
         <div className="flex-1 flex items-center justify-center relative">
