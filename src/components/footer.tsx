@@ -42,6 +42,10 @@ const CONTACT_INFO = {
     display: "(84) 98833-0213",
     href: "tel:+5584988330213",
   },
+  phone2: {
+    display: "(84) 3231-8338",
+    href: "tel:+558432318338",
+  },
   email: {
     display: "luciana@andrademarinho.com.br",
     href: "mailto:contato@andrademarinho.com.br",
@@ -102,6 +106,9 @@ export function Footer() {
             <div className="flex flex-col gap-3">
               <a href={CONTACT_INFO.phone.href} className={linkClassName}>
                 {CONTACT_INFO.phone.display}
+              </a>
+              <a href={CONTACT_INFO.phone2.href} className={linkClassName}>
+                {CONTACT_INFO.phone2.display}
               </a>
               <a href={CONTACT_INFO.email.href} className={linkClassName}>
                 {CONTACT_INFO.email.display}
