@@ -5,7 +5,7 @@ import { useRef } from "react";
 
 const phrases = [
   "Seu próximo capítulo começa com uma decisão.",
-  "Escolha construir com quem constrói excelência.",
+  "Escolha investir com quem constrói excelência.",
   "Agende uma conversa personalizada.",
 ];
 
