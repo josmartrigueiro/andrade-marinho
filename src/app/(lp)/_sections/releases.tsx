@@ -1,13 +1,12 @@
 "use client";
 
 import { CaretLeft, CaretRight } from "@phosphor-icons/react";
-import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import useEmblaCarousel from "embla-carousel-react";
+import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
 import { TextEffect } from "@/components/ui/text-effect";
-import { Button } from "@/components/ui/button";
 
 const AUTOPLAY_DELAY = 5000;
 const PROGRESS_INTERVAL = 50;
@@ -283,16 +282,6 @@ export function Releases() {
 
         {/* Bottom bar */}
         <div className="relative mx-4 md:mx-6 lg:mx-8 mb-6 md:mb-8 lg:mb-10">
-          <div className="flex justify-center mb-0">
-            <Button
-              variant="outline-white"
-              render={(props) => <a {...props} href="#fale-conosco" />}
-              className="w-64"
-            >
-              Ver empreendimento
-            </Button>
-          </div>
-
           <div className="absolute left-0 bottom-0 flex items-center gap-2 h-full">
             {RELEASES.map((_, index) => (
               <button
