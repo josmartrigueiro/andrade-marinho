@@ -8,9 +8,9 @@ import {
   ShieldCheck,
 } from "@phosphor-icons/react";
 import { motion, type Variants } from "motion/react";
-import { TextEffect } from "@/components/ui/text-effect";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { TextEffect } from "@/components/ui/text-effect";
 
 const containerVariants: Variants = {
   hidden: {},
@@ -115,9 +115,58 @@ const ventures = [
       },
     ],
   },
+  {
+    name: "Lourdes Marinho",
+    images: [
+      {
+        src: "/ventures/residencial-lourdes-marinho.png",
+        alt: "Fachada do Residencial Lourdes Marinho em Natal RN",
+      },
+    ],
+  },
+  {
+    name: "Topázio",
+    images: [
+      {
+        src: "/ventures/residencial-topazio.png",
+        alt: "Fachada do Residencial Topázio em Natal RN",
+      },
+    ],
+  },
+  {
+    name: "Terraços do Atlântico",
+    images: [
+      {
+        src: "/ventures/residencial-terraços-do-atlantico.png",
+        alt: "Fachada do Residencial Terraços do Atlântico em Natal RN",
+      },
+    ],
+  },
+  {
+    name: "José Marinho de Lucena",
+    images: [
+      {
+        src: "/ventures/residencial-jose-marinho-de-lucena.png",
+        alt: "Fachada do Residencial José Marinho de Lucena em Natal RN",
+      },
+    ],
+  },
 ];
 
-const intervals = [7000, 8500, 5500, 7500];
+const intervals = [7000, 8500, 5500, 7500, 6000, 9000, 7200, 6500];
+
+const gridAreas = ["a", "b", "c", "d", "e", "f", "g", "h"] as const;
+
+const animationDirections = [
+  { y: -40, x: 0 },
+  { x: 40, y: 0 },
+  { x: -40, y: 0 },
+  { y: 40, x: 0 },
+  { x: -40, y: 0 },
+  { y: 40, x: 0 },
+  { y: 40, x: 0 },
+  { x: 40, y: 0 },
+];
 
 function ImageSlideshow({
   images,
@@ -141,7 +190,7 @@ function ImageSlideshow({
   }, [images.length, interval]);
 
   return (
-    <div className={`relative overflow-hidden ${className}`}>
+    <div className={`group relative overflow-hidden ${className}`}>
       <div
         className="absolute inset-0 scale-110"
         style={{
@@ -153,13 +202,13 @@ function ImageSlideshow({
         aria-hidden
       />
 
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-110">
         <Image
           src={images[0].src}
           alt={images[0].alt}
           fill
           className="object-cover"
-          sizes="(max-width: 768px) 100vw, 50vw"
+          sizes="(max-width: 1024px) 50vw, 40vw"
           priority
         />
       </div>
@@ -167,7 +216,7 @@ function ImageSlideshow({
       {images.slice(1).map((image, index) => (
         <motion.div
           key={image.src}
-          className="absolute inset-0"
+          className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-110"
           initial={{ opacity: 0 }}
           animate={{
             opacity: currentIndex === index + 1 ? 1 : 0,
@@ -182,7 +231,7 @@ function ImageSlideshow({
             alt={image.alt}
             fill
             className="object-cover"
-            sizes="(max-width: 768px) 100vw, 50vw"
+            sizes="(max-width: 1024px) 50vw, 40vw"
             loading="lazy"
           />
         </motion.div>
@@ -319,98 +368,52 @@ export function Projects() {
           </motion.div>
 
           <motion.div
-            className="grid gap-4 h-137.5 md:h-175 lg:h-187.5 [grid-template-areas:'a_a_a_a_a'_'b_b_c_c_c'_'b_b_d_d_d'] grid-cols-5 grid-rows-3"
+            className="grid gap-4
+              grid-cols-2
+              lg:grid-cols-3 lg:grid-rows-4 lg:h-[900px]
+              lg:[grid-template-areas:'a_a_b'_'c_d_d'_'e_e_h'_'f_g_h']"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.2 }}
             variants={{
               hidden: {},
               visible: {
                 transition: {
-                  staggerChildren: 0.25,
+                  staggerChildren: 0.2,
                 },
               },
             }}
           >
-            <motion.div
-              className="[grid-area:a]"
-              variants={{
-                hidden: { y: -40, opacity: 0, filter: "blur(6px)" },
-                visible: {
-                  y: 0,
-                  opacity: 1,
-                  filter: "blur(0px)",
-                  transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] },
-                },
-              }}
-            >
-              <ImageSlideshow
-                images={ventures[0].images}
-                interval={intervals[0]}
-                name={ventures[0].name}
-                className="h-full"
-              />
-            </motion.div>
-
-            <motion.div
-              className="[grid-area:b]"
-              variants={{
-                hidden: { y: 40, opacity: 0, filter: "blur(6px)" },
-                visible: {
-                  y: 0,
-                  opacity: 1,
-                  filter: "blur(0px)",
-                  transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] },
-                },
-              }}
-            >
-              <ImageSlideshow
-                images={ventures[1].images}
-                interval={intervals[1]}
-                name={ventures[1].name}
-                className="h-full"
-              />
-            </motion.div>
-
-            <motion.div
-              className="[grid-area:c]"
-              variants={{
-                hidden: { x: -40, opacity: 0, filter: "blur(6px)" },
-                visible: {
-                  x: 0,
-                  opacity: 1,
-                  filter: "blur(0px)",
-                  transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] },
-                },
-              }}
-            >
-              <ImageSlideshow
-                images={ventures[2].images}
-                interval={intervals[2]}
-                name={ventures[2].name}
-                className="h-full"
-              />
-            </motion.div>
-
-            <motion.div
-              className="[grid-area:d]"
-              variants={{
-                hidden: { x: 40, opacity: 0, filter: "blur(6px)" },
-                visible: {
-                  x: 0,
-                  opacity: 1,
-                  filter: "blur(0px)",
-                  transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] },
-                },
-              }}
-            >
-              <ImageSlideshow
-                images={ventures[3].images}
-                interval={intervals[3]}
-                name={ventures[3].name}
-                className="h-full"
-              />
-            </motion.div>
+            {ventures.map((venture, index) => {
+              const dir = animationDirections[index];
+              return (
+                <motion.div
+                  key={venture.name}
+                  className="aspect-[3/4] lg:aspect-auto"
+                  style={{ gridArea: gridAreas[index] }}
+                  variants={{
+                    hidden: { ...dir, opacity: 0, filter: "blur(6px)" },
+                    visible: {
+                      x: 0,
+                      y: 0,
+                      opacity: 1,
+                      filter: "blur(0px)",
+                      transition: {
+                        duration: 0.8,
+                        ease: [0.25, 0.1, 0.25, 1],
+                      },
+                    },
+                  }}
+                >
+                  <ImageSlideshow
+                    images={venture.images}
+                    interval={intervals[index]}
+                    name={venture.name}
+                    className="h-full w-full"
+                  />
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </div>
