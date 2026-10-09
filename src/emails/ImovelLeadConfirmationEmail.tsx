@@ -1,4 +1,4 @@
-import { Heading, Hr, Section, Text } from "@react-email/components";
+import { Heading, Hr, Section, Text } from "react-email";
 import type { ImovelLeadInput } from "@/schemas/imovel-lead.schema";
 import { EmailLayout } from "./components/EmailLayout";
 

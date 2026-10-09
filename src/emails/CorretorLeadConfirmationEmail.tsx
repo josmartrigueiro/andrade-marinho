@@ -1,4 +1,4 @@
-import { Heading, Hr, Section, Text } from "@react-email/components";
+import { Heading, Hr, Section, Text } from "react-email";
 import type { CorretorLeadInput } from "@/schemas/corretor-lead.schema";
 import { EmailLayout } from "./components/EmailLayout";
 
