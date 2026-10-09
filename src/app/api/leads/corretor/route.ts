@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { CorretorLeadConfirmationEmail } from "@/emails/CorretorLeadConfirmationEmail";
 import { CorretorLeadEmail } from "@/emails/CorretorLeadEmail";
-import { resend } from "@/lib/resend";
+import { getEmailService } from "@/lib/resend";
 import { corretorLeadSchema } from "@/schemas/corretor-lead.schema";
 
 export async function POST(req: Request) {
@@ -16,18 +16,31 @@ export async function POST(req: Request) {
       );
     }
 
+    const emailService = getEmailService();
+    if (!emailService) {
+      console.error("[lead-corretor] Email service is not configured");
+      return NextResponse.json(
+        {
+          ok: false,
+          message:
+            "Atendimento por formulário temporariamente indisponível. Tente novamente mais tarde.",
+        },
+        { status: 503 },
+      );
+    }
+
     const data = parsed.data;
 
     const [internalResult, confirmationResult] = await Promise.allSettled([
-      resend.emails.send({
-        from: process.env.CONTACT_EMAIL_FROM as string,
-        to: [process.env.CONTACT_EMAIL_TO as string],
+      emailService.client.emails.send({
+        from: emailService.from,
+        to: [emailService.to],
         replyTo: data.email,
         subject: `🤝 Novo corretor — ${data.name}`,
         react: CorretorLeadEmail({ data }),
       }),
-      resend.emails.send({
-        from: process.env.CONTACT_EMAIL_FROM as string,
+      emailService.client.emails.send({
+        from: emailService.from,
         to: [data.email],
         subject: "Cadastro recebido — Portal do Corretor | Andrade Marinho",
         react: CorretorLeadConfirmationEmail({ data }),

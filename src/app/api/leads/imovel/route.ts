@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { ImovelLeadConfirmationEmail } from "@/emails/ImovelLeadConfirmationEmail";
 import { ImovelLeadEmail } from "@/emails/ImovelLeadEmail";
-import { resend } from "@/lib/resend";
+import { getEmailService } from "@/lib/resend";
 import { imovelLeadSchema } from "@/schemas/imovel-lead.schema";
 
 export async function POST(req: Request) {
@@ -16,18 +16,31 @@ export async function POST(req: Request) {
       );
     }
 
+    const emailService = getEmailService();
+    if (!emailService) {
+      console.error("[lead-imovel] Email service is not configured");
+      return NextResponse.json(
+        {
+          ok: false,
+          message:
+            "Atendimento por formulário temporariamente indisponível. Tente novamente mais tarde.",
+        },
+        { status: 503 },
+      );
+    }
+
     const data = parsed.data;
 
     const [internalResult, confirmationResult] = await Promise.allSettled([
-      resend.emails.send({
-        from: process.env.CONTACT_EMAIL_FROM as string,
-        to: [process.env.CONTACT_EMAIL_TO as string],
+      emailService.client.emails.send({
+        from: emailService.from,
+        to: [emailService.to],
         replyTo: data.email,
         subject: `🏠 Novo lead — ${data.name}`,
         react: ImovelLeadEmail({ data }),
       }),
-      resend.emails.send({
-        from: process.env.CONTACT_EMAIL_FROM as string,
+      emailService.client.emails.send({
+        from: emailService.from,
         to: [data.email],
         subject: "Recebemos seu interesse — Andrade Marinho",
         react: ImovelLeadConfirmationEmail({ data }),
