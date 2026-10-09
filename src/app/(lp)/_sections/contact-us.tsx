@@ -1,15 +1,23 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  ArrowRight,
+  CheckCircle,
+  Envelope,
+  XCircle,
+} from "@phosphor-icons/react";
+import { AnimatePresence, motion, type Variants } from "motion/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { Envelope, ArrowRight, CheckCircle } from "@phosphor-icons/react";
-import { motion, AnimatePresence, type Variants } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { TextEffect } from "@/components/ui/text-effect";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  type ImovelLeadInput,
+  imovelLeadSchema,
+} from "@/schemas/imovel-lead.schema";
 
 // ─── Animation Variants ─────────────────────────────────────────────
 
@@ -40,29 +48,7 @@ const itemVariants: Variants = {
   },
 };
 
-// ─── Schema ──────────────────────────────────────────────────────────
-
-const LETTERS_REGEX = /^[a-zA-ZÀ-ÿ\s]+$/;
-
-const contactSchema = z.object({
-  name: z
-    .string()
-    .min(1, "Nome é obrigatório")
-    .min(3, "Nome deve ter pelo menos 3 caracteres")
-    .regex(LETTERS_REGEX, "Nome deve conter apenas letras"),
-  phone: z
-    .string()
-    .min(1, "Telefone é obrigatório")
-    .refine((val) => val.replace(/\D/g, "").length >= 10, "Telefone inválido"),
-  email: z.string().min(1, "E-mail é obrigatório").email("E-mail inválido"),
-  message: z
-    .string()
-    .min(1, "Mensagem é obrigatória")
-    .min(10, "Mensagem deve ter pelo menos 10 caracteres")
-    .max(500, "Mensagem deve ter no máximo 500 caracteres"),
-});
-
-type ContactFormData = z.infer<typeof contactSchema>;
+type ContactFormData = ImovelLeadInput;
 
 // ─── Phone Mask ──────────────────────────────────────────────────────
 
@@ -77,6 +63,7 @@ function formatPhone(value: string): string {
 
 export function ContactUs() {
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const {
     register,
@@ -86,19 +73,30 @@ export function ContactUs() {
     reset,
     formState: { errors, isSubmitting },
   } = useForm<ContactFormData>({
-    resolver: zodResolver(contactSchema),
+    resolver: zodResolver(imovelLeadSchema),
     mode: "onBlur",
   });
 
   const messageValue = watch("message", "");
 
-  const onSubmit = async (_data: ContactFormData) => {
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    setIsSuccess(true);
-    reset();
-    setTimeout(() => setIsSuccess(false), 5000);
+  const onSubmit = async (data: ContactFormData) => {
+    setIsError(false);
+    try {
+      const res = await fetch("/api/leads/imovel", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) {
+        setIsError(true);
+        return;
+      }
+      setIsSuccess(true);
+      reset();
+      setTimeout(() => setIsSuccess(false), 5000);
+    } catch {
+      setIsError(true);
+    }
   };
 
   const phoneRegister = register("phone");
@@ -255,7 +253,6 @@ export function ContactUs() {
               </Button>
             </div>
 
-            {/* Success Message */}
             <AnimatePresence>
               {isSuccess && (
                 <motion.div
@@ -269,6 +266,21 @@ export function ContactUs() {
                   <span>
                     Recebemos seu interesse! Um consultor entrará em contato em
                     breve.
+                  </span>
+                </motion.div>
+              )}
+              {isError && (
+                <motion.div
+                  className="mt-6 flex items-center gap-3 text-sm text-destructive"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+                >
+                  <XCircle className="size-5 shrink-0" weight="fill" />
+                  <span>
+                    Erro ao enviar. Tente novamente ou ligue para (84)
+                    98833-0213.
                   </span>
                 </motion.div>
               )}

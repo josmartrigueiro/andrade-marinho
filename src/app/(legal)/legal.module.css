@@ -1,0 +1,80 @@
+.legal {
+  color: var(--foreground);
+  background: var(--background);
+}
+.legal a:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 5px;
+}
+.document {
+  font-size: 1rem;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+.document h1 {
+  color: var(--primary);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+.document h2 {
+  color: var(--primary);
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 2.5rem 0 1rem;
+}
+.document p {
+  margin: 1rem 0;
+}
+.document ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+.document li {
+  margin: 0.5rem 0;
+}
+.document a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.document table {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9375rem;
+}
+.document th,
+.document td {
+  border: 1px solid var(--border);
+  padding: 1rem;
+  vertical-align: top;
+}
+.document th {
+  background: #eaf2f7;
+  color: var(--primary);
+}
+.document .table-wrap {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+.document .intro,
+.document .contact {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+}
+.document .updated {
+  color: #52616b;
+  font-size: 0.875rem;
+}
+
+.document h2 span {
+  margin-right: 0.4em;
+}

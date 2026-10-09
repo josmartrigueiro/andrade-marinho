@@ -1,21 +1,25 @@
 "use client";
 
-import { useState } from "react";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import {
-  Handshake,
   ArrowRight,
-  CheckCircle,
   Buildings,
   ChartLineUp,
+  CheckCircle,
+  Handshake,
   Users,
+  XCircle,
 } from "@phosphor-icons/react";
-import { motion, AnimatePresence, type Variants } from "motion/react";
+import { AnimatePresence, motion, type Variants } from "motion/react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { TextEffect } from "@/components/ui/text-effect";
+import {
+  type CorretorLeadInput,
+  corretorLeadSchema,
+} from "@/schemas/corretor-lead.schema";
 
 // ─── Animation Variants ─────────────────────────────────────────────
 
@@ -46,33 +50,7 @@ const itemVariants: Variants = {
   },
 };
 
-// ─── Schema ──────────────────────────────────────────────────────────
-
-const LETTERS_REGEX = /^[a-zA-ZÀ-ÿ\s]+$/;
-const CRECI_REGEX = /^CRECI [0-9]{1,5}-[A-Z]\/[A-Z]{2}$/;
-
-const brokerSchema = z.object({
-  name: z
-    .string()
-    .min(1, "Nome é obrigatório")
-    .min(2, "Nome deve ter pelo menos 2 caracteres")
-    .regex(LETTERS_REGEX, "Nome deve conter apenas letras"),
-  cpf: z
-    .string()
-    .min(1, "CPF é obrigatório")
-    .refine((val) => val.replace(/\D/g, "").length === 11, "CPF inválido"),
-  creci: z
-    .string()
-    .min(1, "CRECI é obrigatório")
-    .regex(CRECI_REGEX, "Formato inválido. Ex: CRECI 12345-F/SP"),
-  phone: z
-    .string()
-    .min(1, "Telefone é obrigatório")
-    .refine((val) => val.replace(/\D/g, "").length >= 10, "Telefone inválido"),
-  email: z.string().min(1, "E-mail é obrigatório").email("E-mail inválido"),
-});
-
-type BrokerFormData = z.infer<typeof brokerSchema>;
+type BrokerFormData = CorretorLeadInput;
 
 // ─── Masks ───────────────────────────────────────────────────────────
 
@@ -118,6 +96,7 @@ const benefits = [
 
 export default function PortalDoCorretor() {
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const {
     register,
@@ -126,16 +105,28 @@ export default function PortalDoCorretor() {
     reset,
     formState: { errors, isSubmitting },
   } = useForm<BrokerFormData>({
-    resolver: zodResolver(brokerSchema),
+    resolver: zodResolver(corretorLeadSchema),
     mode: "onBlur",
   });
 
-  const onSubmit = async (_data: BrokerFormData) => {
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    setIsSuccess(true);
-    reset();
-    setTimeout(() => setIsSuccess(false), 5000);
+  const onSubmit = async (data: BrokerFormData) => {
+    setIsError(false);
+    try {
+      const res = await fetch("/api/leads/corretor", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) {
+        setIsError(true);
+        return;
+      }
+      setIsSuccess(true);
+      reset();
+      setTimeout(() => setIsSuccess(false), 5000);
+    } catch {
+      setIsError(true);
+    }
   };
 
   const cpfRegister = register("cpf");
@@ -366,15 +357,27 @@ export default function PortalDoCorretor() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
-                    transition={{
-                      duration: 0.4,
-                      ease: [0.25, 0.1, 0.25, 1],
-                    }}
+                    transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
                   >
                     <CheckCircle className="size-5 shrink-0" weight="fill" />
                     <span>
                       Cadastro recebido! Nossa equipe entrará em contato em
                       breve.
+                    </span>
+                  </motion.div>
+                )}
+                {isError && (
+                  <motion.div
+                    className="flex items-center gap-3 text-sm text-destructive"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+                  >
+                    <XCircle className="size-5 shrink-0" weight="fill" />
+                    <span>
+                      Erro ao enviar. Tente novamente ou ligue para (84)
+                      98833-0213.
                     </span>
                   </motion.div>
                 )}

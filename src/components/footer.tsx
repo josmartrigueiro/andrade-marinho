@@ -2,6 +2,7 @@
 
 import { motion, type Variants } from "motion/react";
 import Image from "next/image";
+import Link from "next/link";
 
 const containerVariants: Variants = {
   hidden: {},
@@ -31,10 +32,10 @@ const itemVariants: Variants = {
 };
 
 const NAV_LINKS = [
-  { label: "Inicio", href: "#home" },
-  { label: "Sobre a Andrade", href: "#presentation" },
-  { label: "Nossa entregas", href: "#projects" },
-  { label: "Contato", href: "#contato" },
+  { label: "Inicio", href: "/#hero" },
+  { label: "Sobre a Andrade", href: "/#presentation" },
+  { label: "Nossa entregas", href: "/#projects" },
+  { label: "Contato", href: "/#contato" },
 ];
 
 const CONTACT_INFO = {
@@ -132,6 +133,24 @@ export function Footer() {
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
+          <nav
+            aria-label="Documentos legais do Portal do Cliente"
+            className="flex flex-wrap justify-center gap-x-8 gap-y-2"
+          >
+            <Link
+              href="/termos-de-uso"
+              className={`${linkClassName} py-3 focus-visible:outline-2 focus-visible:outline-offset-4`}
+            >
+              Termos de Uso
+            </Link>
+            <Link
+              href="/politica-de-privacidade"
+              className={`${linkClassName} py-3 focus-visible:outline-2 focus-visible:outline-offset-4`}
+            >
+              Política de Privacidade
+            </Link>
+          </nav>
+
           <span className="text-sm text-muted-foreground text-center">
             &copy; {new Date().getFullYear()} Andrade Marinho Empreendimentos
             LTDA. Todos os direitos reservados.
